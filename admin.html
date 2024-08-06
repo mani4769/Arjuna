@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Cricket Score Updates</title>
+    <link rel="stylesheet" href="ddd.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Live Cricket Score Updates</h1>
+        </header>
+        
+        <section class="teams">
+            <h2>Select Team</h2>
+            <button class="team-button" data-team="Team A">Team A</button>
+            <button class="team-button" data-team="Team B">Team B</button>
+        </section>
+
+        <section class="team-players" style="display: none;">
+            <h2>Team Players</h2>
+            <ul id="player-list"></ul>
+        </section>
+
+        <section class="score">
+            <h2>Score</h2>
+            <p id="current-score">Total Runs: 0</p>
+            <p id="wickets">Wickets: 0</p>
+            <p id="overs">Overs: 0.0</p>
+            <p id="wide-count">Wide: 0</p>
+            <p id="no-ball-count">No-Balls: 0</p>
+        </section>
+
+        <section class="batsman">
+            <h2>Batsman</h2>
+            <div id="batsman-info">
+                <p id="batsman1">Batsman 1: John Doe - Runs: 0</p>
+                <p id="batsman2">Batsman 2: Jane Smith - Runs: 0</p>
+            </div>
+            <button id="swap-batsman">Swap Batsmen</button>
+        </section>
+
+        <section class="bowler">
+            <h2>Bowler</h2>
+            <p id="current-bowler">Bowler: Mark Taylor</p>
+            <p id="bowler-stats">Overs Bowled: 0 | Runs Given: 0 | Balls Bowled: 0</p>
+        </section>
+
+        <section class="controls">
+            <div class="run-buttons">
+                <h2>Enter Runs</h2>
+                <button class="button-run" data-runs="1">1</button>
+                <button class="button-run" data-runs="2">2</button>
+                <button class="button-run" data-runs="3">3</button>
+                <button class="button-run" data-runs="4">4</button>
+                <button class="button-run" data-runs="6">6</button>
+            </div>
+
+            <div class="ball-update">
+                <h2>Update Ball</h2>
+                <button class="button-ball ball-button">Ball</button>
+                <button class="button-ball wide-button">WD</button>
+                <button class="button-ball no-ball-button">NB</button>
+                <button class="button-ball wicket-button">WKT</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="ddd.js"></script>
+</body>
+</html>
