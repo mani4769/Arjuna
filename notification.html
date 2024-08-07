@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Live</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking to external CSS file -->
+</head>
+<body>
+    <header>
+             <!-- <img src="clg logo.png" style="height: 90px;">  -->
+             <h1> Live Notifications</h1>
+        <nav>
+            <!-- <ul>
+                <li><a href="#schedules">Match Schedules</a></li>
+                <li><a href="#set-alert">Set Match Alert</a></li>
+                <li><a href="#notifications">Notifications</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul> -->
+        </nav>
+    </header> 
+
+    <main>
+        <section id="schedules">
+            <h2>Match Schedules</h2>
+          <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Match</th>
+                        <th>Venue</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-08-13</td>
+                        <td>
+                            <img src="https://tse2.mm.bing.net/th?id=OIP.eJwW8a6wGLo0P3sDYtnbDQAAAA&pid=Api&P=0&h=180" alt="Team PAK Logo" width="90" height="60">
+                            <span class="vs">VS</span>
+                            <img src="https://tse2.mm.bing.net/th?id=OIP.eJwW8a6wGLo0P3sDYtnbDQAAAA&pid=Api&P=0&h=180" alt="Team SRKR Logo" width="90" height="60">
+                            <span class="alert-icon" data-match="2023-11-01 10:00">🔔</span>
+                        </td>
+                        <td> SRKR ARJUNA STADIUM </td>
+                        <td>10:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-14</td>
+                        <td>
+                            <img src="https://tse2.mm.bing.net/th?id=OIP.pFT4aYsm1w-YY70d_4KW1gHaE8&pid=Api&P=0&h=180" alt="Team NZ Logo" width="90" height="60"> 
+                           <span class="vs">VS</span>
+                            <img src="https://tse2.mm.bing.net/th?id=OIP.eJwW8a6wGLo0P3sDYtnbDQAAAA&pid=Api&P=0&h=180" alt="Team SRKR Logo" width="90" height="60">
+                            <span class="alert-icon" data-match="2023-11-02 14:00">🔔</span>
+                        </td>
+                        <td>SRKR ARJUNA STADIUM</td>
+                        <td>02:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-15</td>
+                        <td>
+                            <img src="https://tse4.mm.bing.net/th?id=OIP.0ubwvFWDjDkiJ0oCOszk5gHaHX&pid=Api&P=0&h=180" alt="Team INDIA Logo" width="90" height="60">
+                            <span class="vs">VS</span>
+                            <img src="https://tse1.mm.bing.net/th?id=OIP.uOeB-ez8h_AQ0Hi8ZBnXkAHaFj&pid=Api&P=0&h=180" alt="Team AUS Logo" width="90" height="60">
+                            <span class="alert-icon" data-match="2023-11-03 18:00">🔔</span>
+                        </td>
+                        <td>SRKR ARJUNA STADIUM</td>
+                        <td>06:00 PM</td>
+                    </tr>
+                </tbody>
+            </table></center>
+        </section>
+
+        <!-- Modal Structure -->
+        <div id="alertModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Set Match Alert</h2>
+                <label for="alertMinutes" style="text-decoration: solid;">Select alert time (minutes before match):</label>
+                <input type="number" id="alertMinutes" name="alertMinutes" min="1" required>
+                <button id="setAlertButton" style="color: red;">Set Alert</button>
+            </div>
+        </div>
+
+        <section id="notifications">
+            <h2>Notifications</h2>
+            <p>You will receive notifications for upcoming matches. Make sure your browser allows notifications!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; SRKR Cricket Live. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Linking to external JavaScript file -->
+</body>
+</html>
