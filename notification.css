@@ -1,0 +1,150 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font-family: Arial, sans-serif; */
+    /* font-family: Gruppo;font-size: 22px;  */
+    font-family: Aclonica;font-size: 20px;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background:#8458B3;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10); 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Main section styles */
+main {
+    padding: 20px;
+}
+
+/* Match schedules table styles */
+h2 {
+    color: black;
+    margin-bottom: 15px;
+}
+
+table {
+    width: auto;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    
+}
+table th, table td {
+    /* border: 3px solid #ddd; */
+    padding: 20px;
+    text-align: left;
+}
+
+table th {
+    background-color:  #d05699;
+    color: white;border-radius: 9px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10); 
+    
+}
+
+table tr:nth-child(even) {
+    background-color:white;
+}
+
+table tr:hover {
+    background-color: #e7f3ff; 
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 10);
+}
+
+/* Alert symbols */
+.alert-icon {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* On top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: rgb(237, 195, 230);
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 5px;
+    border: 1px solid #88888800;
+    width: 40%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 10); 
+}
+.vs {
+    font-size: large;
+    font-weight:600;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 5 20px;
+    animation: zoomIn 2s infinite alternate;
+    display: inline-block;
+    
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.4);
+        color: black;
+    }
+    to {
+        transform: scale(1.1);
+        color: rgba(238, 50, 50, 0.788);
+    }
+}
+
+
+.close-button {
+    color: #8458B3;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #8458B3;
+    color: white;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10); 
+}
+
+
+
+
+
+
+
+
+
