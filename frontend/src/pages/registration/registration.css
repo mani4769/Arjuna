@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke
+}
+
+
+
+#formContainer {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 6vh;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+label ::placeholder
+{
+    font-size: 6vh;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #0056b3;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+button[type="button"] {
+    background-color: #dc3545;
+}
+
+button[type="button"]:hover {
+    background-color: #c82333;
+}
