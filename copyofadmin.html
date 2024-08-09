@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Cricket Score Updates</title>
+    <link rel="stylesheet" href="ddd.css">
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+    }
+
+    .container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    }
+
+    header {
+    text-align: center;
+    margin-bottom: 20px;
+    }
+
+    h1 {
+    color: #4CAF50;
+    }
+
+    h2 {
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+    }
+
+    .teams, .team-players, .score, .batsman, .bowler {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    }
+
+    .team-button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+    }
+
+    .team-button:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    }
+
+    .team-button:active {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+    }
+
+    #player-list {
+    list-style-type: none;
+    padding: 0;
+    }
+
+    #player-list li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    }
+
+    p {
+    font-size: 16px;
+    color: #555;
+    }
+
+    .controls {
+    display: flex;
+    justify-content: space-between;
+    }
+
+    .run-buttons, .ball-update {
+    flex: 1;
+    text-align: center;
+    margin: 10px;
+    }
+
+    .button-run, .button-ball {
+    background-color: #FF5722;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .button-run:hover, .button-ball:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-run:active, .button-ball:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    #swap-batsman {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    }
+
+    #swap-batsman:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    }
+
+    #swap-batsman:active {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+    }
+
+    #current-score, #wickets, #overs, 
+    #batsman1, #batsman2, 
+    #current-bowler, #bowler-stats {
+    font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Live Cricket Score Updates</h1>
+        </header>
+        
+        <section class="teams">
+            <h2>Select Team</h2>
+            <button class="team-button" data-team="Team A">Team A</button>
+            <button class="team-button" data-team="Team B">Team B</button>
+        </section>
+        
+        <section class="team-players" style="display: none;">
+            <h2>Team Players</h2>
+            <ul id="player-list"></ul>
+        </section>
+        
+        <section class="score">
+            <h2>Score</h2>
+            <p id="current-score">Total Runs: 0</p>
+            <p id="wickets">Wickets: 0</p>
+            <p id="overs">Overs: 0.0</p>
+            <p id="wide-count">Wide: 0</p>
+            <p id="no-ball-count">No-Balls: 0</p>
+        </section>
+
+        <section class="batsman">
+            <h2>Batsman</h2>
+            <div id="batsman-info">
+                <p id="batsman1">Batsman 1: Select from team A - Runs: 0</p>
+                <p id="batsman2">Batsman 2: Select from team A - Runs: 0</p>
+            </div>
+            <button id="swap-batsman">Swap Batsmen</button>
+        </section>
+
+        <section class="bowler">
+            <h2>Bowler</h2>
+            <p id="current-bowler">Bowler:Select from team B</p>
+            <p id="bowler-stats">Runs Given: 0 | Balls Bowled: 0</p>
+        </section>
+
+        <section class="controls">
+            <div class="run-buttons">
+                <h2>Enter Runs</h2>
+                <button class="button-run ball-button" data-runs="1">1</button>
+                <button class="button-run ball-button" data-runs="2">2</button>
+                <button class="button-run ball-button" data-runs="3">3</button>
+                <button class="button-run ball-button" data-runs="4">4</button>
+                <button class="button-run ball-button" data-runs="6">6</button>
+                <button class="button-run ball-button" data-runs="0">0</button>
+            </div>
+
+            <div class="ball-update">
+                <h2>Update Ball</h2>
+                <button class="button-ball wide-button">WD</button>
+                <button class="button-ball no-ball-button">NB</button>
+                <button class="button-ball wicket-button">WKT</button>
+            </div>
+        </section>
+    </div>
+    <script>
+        let teams = {
+    "Team A": [
+        "Player A1", "Player A2", "Player A3", "Player A4", "Player A5", 
+        "Player A6", "Player A7", "Player A8", "Player A9", "Player A10", 
+        "Player A11", "Player A12", "Player A13", "Player A14", "Player A15"
+    ],
+    "Team B": [
+        "Player B1", "Player B2", "Player B3", "Player B4", "Player B5", 
+        "Player B6", "Player B7", "Player B8", "Player B9", "Player B10", 
+        "Player B11", "Player B12", "Player B13", "Player B14", "Player B15"
+    ]
+};
+
+let batsmenStats = {};  // Store stats for all batsmen
+let bowlersStats = {};  // Store stats for all bowlers
+
+let currentBatsmen = [
+    { name: "SELECT batsman from team A", runs: 0, balls: 0 },
+    { name: "SELECT batsman from team A", runs: 0, balls: 0 }
+];
+
+let currentBowler = {
+    name: "SELECT bowler from team B",
+    oversBowled: 0,
+    runsGiven: 0,
+    ballsBowled: 0,
+    wicketsTaken: 0
+};
+
+let outPlayers = [];
+
+let currentScore = 0;
+let totalBalls = 0;
+let totalWickets = 0;
+let totalWides = 0;
+let totalNoBalls = 0;
+
+document.querySelectorAll('.team-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const teamName = button.getAttribute('data-team');
+        displayTeamPlayers(teamName);
+    });
+});
+
+function displayTeamPlayers(teamName, filterOut = []) {
+    const playerListElement = document.getElementById('player-list');
+    playerListElement.innerHTML = "";
+
+    teams[teamName].forEach(player => {
+        if (!filterOut.includes(player)) {
+            const listItem = document.createElement('li');
+            listItem.textContent = player;
+            listItem.addEventListener('click', function() {
+                selectPlayer(player, teamName);
+            });
+            playerListElement.appendChild(listItem);
+        }
+    });
+
+    document.querySelector('.team-players').style.display = 'block';
+}
+
+function selectPlayer(playerName, teamName) {
+    if (teamName === "Team A") {
+        if (!batsmenStats[playerName]) {
+            batsmenStats[playerName] = { runs: 0, balls: 0 };
+        }
+        currentBatsmen.unshift({
+            name: playerName,
+            runs: batsmenStats[playerName].runs,
+            balls: batsmenStats[playerName].balls
+        });
+        updateBatsmanInfo();
+    } else if (teamName === "Team B") {
+        if (!bowlersStats[playerName]) {
+            bowlersStats[playerName] = {
+                oversBowled: 0,
+                runsGiven: 0,
+                ballsBowled: 0,
+                wicketsTaken: 0
+            };
+        }
+        currentBowler = {
+            name: playerName,
+            oversBowled: bowlersStats[playerName].oversBowled,
+            runsGiven: bowlersStats[playerName].runsGiven,
+            ballsBowled: bowlersStats[playerName].ballsBowled,
+            wicketsTaken: bowlersStats[playerName].wicketsTaken
+        };
+        displayBowlerInfo();
+    }
+    document.querySelector('.team-players').style.display = 'none';
+}
+
+document.querySelectorAll('.button-run[data-runs]').forEach(button => {
+    button.addEventListener('click', function() {
+        const runsToAdd = parseInt(button.getAttribute('data-runs'));
+
+        // Update score
+        currentScore += runsToAdd;
+        currentBatsmen[0].runs += runsToAdd;
+        currentBatsmen[0].balls += 1;
+        batsmenStats[currentBatsmen[0].name].runs += runsToAdd;
+        batsmenStats[currentBatsmen[0].name].balls += 1;
+
+        currentBowler.runsGiven += runsToAdd;
+        bowlersStats[currentBowler.name].runsGiven += runsToAdd;
+
+        // Update ball count
+        totalBalls += 1;
+        currentBowler.ballsBowled += 1;
+        bowlersStats[currentBowler.name].ballsBowled += 1;
+
+        // Update overs and balls count
+        let oversCompleted = Math.floor(totalBalls / 6);
+        let ballsInOver = totalBalls % 6;
+
+        currentBowler.oversBowled = oversCompleted + ballsInOver / 10;
+        bowlersStats[currentBowler.name].oversBowled = currentBowler.oversBowled;
+
+        // Display updates
+        displayScoreboard();
+
+        // Swap batsmen if runs are 1 or 3
+        if (runsToAdd === 1 || runsToAdd === 3) {
+            swapBatsmen();
+        }
+
+        // Check if an over is completed
+        if (ballsInOver === 0) {
+            swapBatsmen();  // Swap batsmen at the end of an over
+            changeBowler();
+            alert('change bowler');
+        }
+    });
+});
+
+// Wide update function
+document.querySelector('.wide-button').addEventListener('click', function() {
+    totalWides += 1;
+    currentScore += 1;
+    currentBowler.runsGiven += 1;
+    bowlersStats[currentBowler.name].runsGiven += 1;
+
+    // Display updates
+    displayScoreboard();
+});
+
+// No-ball update function
+document.querySelector('.no-ball-button').addEventListener('click', function() {
+    totalNoBalls += 1;
+    currentScore += 1;
+    currentBowler.runsGiven += 1;
+    bowlersStats[currentBowler.name].runsGiven += 1;
+
+    // Display updates
+    displayScoreboard();
+});
+
+// Wicket update function
+document.querySelector('.wicket-button').addEventListener('click', function() {
+    if (totalWickets < teams["Team A"].length - 1) {
+        totalWickets += 1;
+        alert(`Wicket! ${currentBatsmen[0].name} is out!`);
+
+        // Add the out player to the list
+        outPlayers.push(currentBatsmen[0].name);
+        currentBowler.wicketsTaken += 1;
+        bowlersStats[currentBowler.name].wicketsTaken += 1;
+
+        currentBatsmen.shift();
+        alert('select another Batsman');
+        // Display player list to select new batsman
+        displayTeamPlayers('Team A', outPlayers);
+    } else {
+        alert("All wickets are down!");
+    }
+
+    // Display updates
+    displayScoreboard();
+    updateBatsmanInfo();
+});
+
+// Batsmen swap function
+document.getElementById('swap-batsman').addEventListener('click', function() {
+    swapBatsmen();
+});
+
+// Swap batsmen function
+function swapBatsmen() {
+    [currentBatsmen[0], currentBatsmen[1]] = [currentBatsmen[1], currentBatsmen[0]];
+    updateBatsmanInfo();
+}
+
+// Bowler change function
+function changeBowler() {
+    const eligibleBowlers = teams["Team B"].filter(player => {
+        return !currentBowler.name.includes(player);
+    });
+    displayTeamPlayers("Team B", [currentBowler.name]);
+}
+
+// Display batsman info function
+function updateBatsmanInfo() {
+    document.getElementById('batsman1').textContent = `Batsman 1: ${currentBatsmen[0].name} - Runs: ${currentBatsmen[0].runs} - Balls: ${currentBatsmen[0].balls}`;
+    document.getElementById('batsman2').textContent = `Batsman 2: ${currentBatsmen[1].name} - Runs: ${currentBatsmen[1].runs} - Balls: ${currentBatsmen[1].balls}`;
+}
+
+// Display bowler info function
+function displayBowlerInfo() {
+    document.getElementById('current-bowler').textContent = `Bowler: ${currentBowler.name}`;
+    document.getElementById('bowler-stats').textContent = `Runs Given: ${currentBowler.runsGiven} | Balls Bowled: ${currentBowler.ballsBowled} | Wickets: ${currentBowler.wicketsTaken}`;
+}
+
+// Display scoreboard function
+function displayScoreboard() {
+    document.getElementById('current-score').textContent = `Total Runs: ${currentScore}`;
+    document.getElementById('wickets').textContent = `Wickets: ${totalWickets}`;
+    document.getElementById('overs').textContent = `Overs: ${Math.floor(totalBalls / 6)}.${totalBalls % 6}`;
+    document.getElementById('wide-count').textContent = `Wide: ${totalWides}`;
+    document.getElementById('no-ball-count').textContent = `No-Balls: ${totalNoBalls}`;
+    displayBowlerInfo();
+    updateBatsmanInfo();
+}
+
+// Initial display update
+displayScoreboard();
+updateBatsmanInfo();
+displayBowlerInfo();
+
+    </script>
+</body>
+</html>
