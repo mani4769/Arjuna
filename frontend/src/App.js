@@ -8,7 +8,14 @@ import ScheduleAlert from './pages/alert/alert.js';
 import Registration from './pages/registration/registration.js';
 import Schedulepage from './pages/schedules/SchedulePage.js';
 import UserSchedulePage from './pages/userschedulepage/userschedule.js';
-
+import AdminDashboard  from './pages/admindashboard/admindashboard.js';
+import Chart  from './pages/Chart/chart.js';
+import Admin from './pages/Adminlogin/admin.js';
+import livescoreapp from './pages/livescoreapp/livescoreapp.js';
+import LiveScoreApp from './pages/livescoreapp/livescoreapp.js';
+import Userfeedback from './pages/userfeedback/userfeedback.js';
+import AdminFeedback from './pages/feedback/adminfeedback.js';
+import Makeadmin   from './pages/makeadmin/makeadmin.js';
 function MainApp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPopup, setShowPopup] = useState(true);
@@ -64,6 +71,49 @@ function MainApp() {
         element={<UserSchedulePage/>}
         />
       )
+      (
+        <Route
+        path='/admindashboard'
+        element={<AdminDashboard/>}
+        />
+      )
+      (
+        <Route
+        path='/chart'
+        element={<Chart/>}
+        />
+      )
+      (
+        <Route
+        path='/admin'
+        element={<Admin/>}
+        />
+      )
+      (
+        <Route
+        path='/livescoreapp'
+        element={<LiveScoreApp/>}
+        />
+      )
+      (
+        <Route
+        path='/feedback'
+        element={<Userfeedback/>}
+        />
+      )
+      (
+        <Route
+        path='/adminfeedback'
+        element={<AdminFeedback/>}
+        />
+      )
+      (
+        <Route
+        path='/makeadmin'
+        element={<Makeadmin/>}
+        />
+      )
+      
 
       </Routes>
       

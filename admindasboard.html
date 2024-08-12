@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+     background-size: cover;
+    color: white;
+    display: flex;
+    position: relative;
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1b1b1b;
+    padding: 20px;
+    z-index: 1;
+    border-right: 3px solid #28a745; 
+}
+
+.logo img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    filter:grayscale(100%);
+}
+img:hover {
+    filter: grayscale(0%);
+}
+
+.nav {
+    margin-top: 20px;
+}
+
+.nav-item {
+    height: 60px;
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+    padding: 15px;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 15px;
+    text-align: center;
+    background: linear-gradient(135deg, #007bff, #28a745);
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, #28a745, #007bff);
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    height: 100%;
+    overflow: hidden; 
+}
+
+.admin-title {
+    font-size: 4em; 
+    font-weight: bolder;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: #ffdc00; 
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; 
+}
+
+.large {
+    font-size: 1.2em;
+    color: #dc3545; 
+    position: relative;
+    z-index: 1;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.stats-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    height: calc(100% - 100px); 
+    overflow: hidden; 
+}
+
+.stat-card {
+    position: relative;
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    height: auto;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
+}
+
+.animation {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 100px; 
+    overflow: hidden;
+    pointer-events: none;
+}
+.heart-icon {
+    font-size: 44px; 
+    color: #e74c3c; 
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="admin3.png" alt="IPL Logo">
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-item">LIVE</a>
+                <a href="#" class="nav-item">REGISTER</a>
+                <a href="#" class="nav-item">SCORES</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1 class="admin-title" style="margin-bottom: 80vh;">
+                <span class="large">A</span>dmin <span class="large">I</span>nterface      <i class="fas fa-heart heart-icon"></i>
+            </h1>
+        </main>
+    </div>
+  
+</body>
+</html>

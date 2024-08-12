@@ -2,74 +2,350 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: whitesmoke
+    background-color: #f8f9fa; /* Soft background color for better contrast */
+    /* background:linear-gradient(#5680e991,#84ceeb9a,#5ab9ea,#c1c8e4b4,#8760d093); */
 }
-
-
-
-#formContainer {
-    margin: 20px auto;
-    width: 80%;
+.top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s ease-in-out infinite;
+}
+#formcContainer {
+ 
+    margin: auto;
+    width: 100%; /* Adjusted for better responsiveness */
     max-width: 600px;
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #ede8f5;
+     /* More subtle shadow */
     text-align: center;
-    margin-top: 6vh;
+    margin-top: 1.1vh;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 10);
 }
 
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 15px 0 5px;
     font-weight: bold;
+    color: #343a40; /* Darker label color for better readability */
+    
 }
-label ::placeholder
-{
-    font-size: 6vh;
+
+
+.formcTitle#h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.formcTitle h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: #28a745;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.formcTitle#h2:hover::after {
+  width: 50%;
+}
+
+.formcTitle#h2:hover {
+  color: #28a745;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#h2formcTitle {
+  cursor: pointer;
+}
+
+
+
+
+
+input::placeholder, select::placeholder {
+    font-size: 1em; /* Consistent placeholder font size */
+    color: #6c757d; /* Gray color for placeholders */
+    
 }
 
 input, select {
-    width: 100%;
+    width: 50vh;
     padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
+    margin-bottom: 15px; /* Increased spacing for better clarity */
+    border: 1px solid #ced4da;
     border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; 
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 4);
 }
 
 input:focus, select:focus {
     outline: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Accent color for focus */
+    border-color: #007bff; /* Bootstrap primary color for focused state */
+}
+.Rbutton-container{
+  display: flex;
+  justify-content: space-between;
+}
+input::placeholder {
+  color: #aaa;
+  transition: 0.3s ease;
 }
 
-.button-container {
-    margin-top: 20px;
+input:focus::placeholder {
+  transform: translateY(-10px);
+  font-size: 12px;
+  color: #333;
 }
 
-button {
-    padding: 12px 24px;
-    margin-right: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    border-radius: 6px;
-    transition: background-color 0.3s, transform 0.3s;
+input#emaill{
+  margin-right: 50vh;
+  border-radius: 30px;
+  width: 56vh;
+}
+input#namee{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#RegisterId{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#roll{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#runs{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#matches{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#wickets{
+  
+  border-radius: 30px;
+  width: 60vh;
+}
+input#teamName{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#teamCode{
+  border-radius: 30px;
+  width: 60vh;
 }
 
-button:hover {
-    background-color: #218838;
-    transform: scale(1.05);
+#submitBtn,
+#submitBtn *,
+#submitBtn:after,
+#submitBtn :before,
+#submitBtn:after,
+#submitBtn:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+#submitBtn {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  /* font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; */
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+}
+#submitBtn:disabled {
+  cursor: default;
+}
+#submitBtn:-moz-focusring {
+  outline: auto;
+}
+#submitBtn svg {
+  display: block;
+  vertical-align: middle;
+}
+#submitBtn [hidden] {
+  display: none;
+}
+#submitBtn {
+
+  background-color: #7f4caf;
+  border-radius: 50px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+  /* box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #fff; */
+  box-sizing: border-box;
+  color: #cccccc;
+  color: rgb(8, 63, 122);
+  display: block;
+  font-weight: 900;
+  -webkit-mask-image: none;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+  text-transform: uppercase;
+  transition: 0.9s;
+}
+#submitBtn:active {
+  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+    inset -3px -3px 7px #fff;
+  color: #000;
+  text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
 }
 
-button[type="button"] {
-    background-color: #dc3545;
+#updateBtn,
+#updateBtn *,
+#updateBtn:after,
+#updateBtn :before,
+#updateBtn:after,
+#updateBtn:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+#updateBtn {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+}
+#updateBtn:disabled {
+  cursor: default;
+}
+#updateBtn:-moz-focusring {
+  outline: auto;
+}
+#updateBtn svg {
+  display: block;
+  vertical-align: middle;
+}
+#updateBtn [hidden] {
+  display: none;
+}
+#updateBtn {
+  /* background: linear-gradient(318.32deg, hsl(292, 44%, 72%), #9ad3cf 55%, #efd386); */
+  background-color: #7f4caf;
+  border-radius: 50px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+  /* box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #fff; */
+  box-sizing: border-box;
+  color: #ccc;
+  
+  display: block;color: rgb(8, 63, 122);
+  font-weight: 900;
+  -webkit-mask-image: none;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+  text-transform: uppercase;
+  transition: 0.1s;
+}
+#updateBtn:active {
+  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+    inset -3px -3px 7px #fff;
+  color: #000;
+  text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
 }
 
-button[type="button"]:hover {
-    background-color: #c82333;
+
+#deleteBtn,
+#deleteBtn *,
+#deleteBtn:after,
+#deleteBtn :before,
+#deleteBtn:after,
+#deleteBtn:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+#deleteBtn {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+}
+#deleteBtn:disabled {
+  cursor: default;
+}
+#deleteBtn:-moz-focusring {
+  outline: auto;
+}
+#deleteBtn svg {
+  display: block;
+  vertical-align: middle;
+}
+#deleteBtn [hidden] {
+  display: none;
+}
+#deleteBtn {
+  background-color: #7f4caf;
+  border-radius: 50px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+  box-sizing: border-box;
+  color: #ccc;
+  color: rgb(8, 63, 122);
+  display: block;
+  font-weight: 900;
+  -webkit-mask-image: none;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-shadow: 2px 2px 2px #d6e1ef99, 0 0 0 #000, 2px 2px 2px #d6e1ef00;
+  text-transform: uppercase;
+  transition: 0.1s;
+}
+#deleteBtn:active {
+  box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+    inset -3px -3px 7px #fff;
+  color: #000;
+  text-shadow: 1px 1px 1px #d6e1ef99, 0 0 0 #000, 1px 1px 1px #d6e1ef00;
 }

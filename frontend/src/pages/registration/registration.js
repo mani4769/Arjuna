@@ -60,30 +60,30 @@ function Registration() {
 
     return (
         <div>
-            <div style={{backgroundColor:"pink",boxShadow:"inset  0 0 19px rgba(0, 0, 0, 0.1)"}}>
-                <h1 style={{ marginLeft: "65vh", marginTop: "4vh", color: "green"}}>TEAM REGISTRATIONS</h1>
+            <div class="top">
+                <h1 style={{ padding:"0.5px",marginLeft: "6vh", marginTop: "auto", fontStyle:""}}>TEAM REGISTRATIONS</h1>
             </div>
             
-            <div id="formContainer">
-                <h2 id="formTitle">{formTitle}</h2>
+            <div id="formcContainer">
+                <h2 id="formTitle"style={{fontFamily:'Cambria',fontSize:'5vh'}}>{formTitle}</h2>
                 <form id="playerForm" onSubmit={handleFormSubmit}>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" required />
-                    <label htmlFor="registerId">Register ID:</label>
-                    <input type="text" id="registerId" required />
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" required />
-                    <label htmlFor="roll">Role:</label>
+                    <label htmlFor="name" style={{marginRight:'70vh'}}>Name:</label>
+                    <input type="text" id="namee" required />
+                    <label htmlFor="registerId" style={{marginRight:'52vh',fontFamily:'monospace'}}>Register ID:</label>
+                    <input type="text" id="RegisterId" required />
+                    <label htmlFor="email"style={{marginRight:'70vh'}}>Email:</label>
+                    <input type="email" id="emaill" required style={{marginLeft:'1vh'}}/>
+                    <label htmlFor="roll"style={{marginRight:'70vh'}}>Role:</label>
                     <input type="text" placeholder='batsman or bowler or allrounder' id="roll" required />
-                    <label htmlFor="runs">Number of Runs:</label>
+                    <label htmlFor="runs"style={{marginRight:'47vh'}}>Number of Runs:</label>
                     <input type="text" id="runs" required />
-                    <label htmlFor="matches">Number of matches:</label>
+                    <label htmlFor="matches"style={{marginRight:'46vh'}}>Number of matches:</label>
                     <input type="text" id="matches" required />
-                    <label htmlFor="wickets">Number of wickets:</label>
+                    <label htmlFor="wickets"style={{marginRight:'46vh'}}>Number of wickets:</label>
                     <input type="text" id="wickets" required />
-                    <label htmlFor="teamName">Team Name:</label>
+                    <label htmlFor="teamName"style={{marginRight:'52vh'}}>Team Name:</label>
                     <input type="text" id="teamName" required />
-                    <label htmlFor="teamCode">Team Code:</label>
+                    <label htmlFor="teamCode"style={{marginRight:'52vh'}}>Team Code:</label>
                     <select id="teamCode" required>
                         <option value="" disabled selected>Select Team Code</option>
                         <option value="TC001">TC001</option>
@@ -91,10 +91,10 @@ function Registration() {
                         <option value="TC003">TC003</option>
                         <option value="TC004">TC004</option>
                     </select>
-                    <div className="button-container">
-                        <button type="submit" id="submitBtn">{submitButtonText}</button>
-                        <button type="button" id="updateBtn" onClick={() => setSubmitButtonText('Update')}>Update</button>
-                        <button type="button" id="deleteBtn" onClick={handleDeleteClick}>Delete</button>
+                    <div className="Rbutton-container">
+                        <button type="submit" id="submitBtn" style={{color:'white',fontSize:'2.5vh'}}>{submitButtonText}</button>
+                        <button type="button" id="updateBtn" style={{color:'white',fontSize:'2.5vh'}} onClick={() => setSubmitButtonText('Update')}>Update</button>
+                        <button type="button" id="deleteBtn" style={{color:'white',fontSize:'2.5vh'}} onClick={handleDeleteClick}>Delete</button>
                     </div>
                 </form>
             </div>

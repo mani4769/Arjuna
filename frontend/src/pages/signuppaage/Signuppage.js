@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './signup.css';
 import logo from '../../images/logo.jpg';
-import cricketLogo from '../../images/cricketlogo.jpg.png';
+import cricketLogo from '../../images/PLAYER.png';
 import videosrc from '../../images/video.mp4';
 import Popup from '../../popup'; // Ensure Popup is imported
 
@@ -39,7 +39,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
       setIsVideoOverlayActive(true);
   
       // Store user details in localStorage
-      localStorage.setItem('userDetails', JSON.stringify(formData));
+      sessionStorage.setItem('userDetails', JSON.stringify(formData));
   
       setTimeout(() => {
         console.log('Hiding signup section');
@@ -75,7 +75,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
             <label htmlFor="email">Email:</label>
             <input id="email" name="email" type="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required />
             <div className="button-container">
-              <button type="submit">Sign In</button>
+              <button type="submit">Sign Up</button>
               <button type="button" onClick={handleLoginClick}>Login</button>
             </div>
           </form>

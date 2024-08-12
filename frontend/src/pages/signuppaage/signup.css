@@ -1,28 +1,38 @@
-@keyframes colorChange {
-  0% { color: #FF5733; }
-  15% { color: #33FF57; }
-  30% { color: #3357FF; }
-  45% { color: #FF33A1; }
-  60% { color: #FF5733; }
-  75% { color: aqua; }
-  95% { color: #40929e; }
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f2f2f2;
+  min-height: auto;
+  background:linear-gradient(#5680e991,#84ceeb9a,#5ab9ea,#c1c8e4b4,#8760d093);
+  background-color: white;
   padding: 2rem;
-}
 
+}
 .navs {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .navs img {
   height: 60px;
@@ -37,21 +47,33 @@
 }
 
 .signup {
+  
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 80%;
   max-width: 1200px;
-  background-color: white;
+  background-color: #ede8f5;
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 10);
+  /* transition: transform 0.3s, box-shadow 0.3s; */
   padding: 2rem;
   gap: 2rem;
   position: relative;
   z-index: 1;
   transition: transform 1s ease; /* For sliding effect */
+
 }
+
+.signup:hover {
+  transform: scale(1.02);
+  /* box-shadow: 0 6px 12px rgba(0,0,0,0.3); */
+  box-shadow: inset 0 0 7px rgba(0, 0, 0, 7);
+  
+}
+
 .signup.slideUp {
   transform: translateY(-100vh); /* Slide up */
 }
@@ -62,13 +84,16 @@
   flex: 1;
   padding: 2rem;
   border-radius: 12px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color:white;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+
 }
 .signup .system h2 {
   margin-top: 0;
   font-size: 2rem;
   color: chocolate;
+  
 }
 .signup .system p {
   font-size: 1.1rem;
@@ -95,30 +120,48 @@
 .signup .system .button-container {
   display: flex;
   gap: 1rem;
+ 
 }
 .signup .system button {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  width: 100%;
+ /* Green background */
+   background-color: #7f4caf;  /* Green background */
+    border: none;               /* Remove border */
+    color: white;               /* White text */
+    padding: 15px 32px;         /* Padding */
+    text-align: center;         /* Center the text */
+    text-decoration: none;      /* Remove underline */
+    display: inline-block;      /* Make the button inline */
+    font-size: 16px;            /* Increase font size */
+    margin: 4px 2px;            /* Small margin */
+    cursor: pointer;            /* Pointer/hand icon */
+    border-radius: 50px;        /* Rounded corners */
+    position: relative;         /* Needed for the pseudo-elements */
+    overflow: hidden;           /* Hide overflow */
+    z-index: 1;                 /* Place above pseudo-elements */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 4);
+  
 }
 .signup .system button:hover {
-  background-color: #0056b3;
+  /* background-color: #0056b3; */
   transform: scale(1.05);
 }
 .signup .image {
+  /* border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s; */
   flex: 1;
+  object-fit: cover;
+  mix-blend-mode: darken;
+  
 }
 .signup .image img {
   max-width: 100%;
   height: auto; /* Adjust height as needed */
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(255, 255, 255, 0.729); */
+
+  
 }
 
 /* Full-screen video overlay styles */
@@ -181,4 +224,20 @@
 
 .user-popup-content button:hover {
   background: #0056b3;
+}
+
+
+
+input#email{
+  /* margin-right: 50vh; */
+  border-radius: 30px;
+  width: 60vh;
+}
+input#name{
+  border-radius: 30px;
+  width: 60vh;
+}
+input#regNo{
+  border-radius: 30px;
+  width: 60vh;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './schedule.css'
+import './schedule.css';
 
 const SchedulePage = () => {
   const [teams, setTeams] = useState([]);
@@ -30,7 +30,16 @@ const SchedulePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit the schedule data to the server
+
+    // Check if the selected teams are the same
+    if (scheduleData.team1 === scheduleData.team2) {
+      alert('The selected teams cannot be the same.');
+      return;
+    }
+
+    // Log the data before sending
+    console.log(scheduleData);
+
     axios.post('http://localhost:5000/api/schedule', scheduleData)
       .then(response => {
         alert(response.data.message);
@@ -49,6 +58,7 @@ const SchedulePage = () => {
   };
 
   return (
+   
     <div className="schedule-container">
       <h1>Create Schedule</h1>
       <form onSubmit={handleSubmit}>
@@ -85,6 +95,7 @@ const SchedulePage = () => {
         <button type="submit">Create Schedule</button>
       </form>
     </div>
+  
   );
 };
 

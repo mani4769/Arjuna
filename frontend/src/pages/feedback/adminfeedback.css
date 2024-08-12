@@ -1,0 +1,36 @@
+/* adminfeedbackpage.css */
+.admin-feedback-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.feedback-list {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.feedback-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.feedback-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.feedback-item p {
+    margin: 0 0 10px 0;
+}
+
+.feedback-item p strong {
+    color: #333;
+}

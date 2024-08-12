@@ -3,7 +3,7 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 /* Header styling */
@@ -11,47 +11,89 @@
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
-/* Styling for the match list */
-.schedule-alert-container ul {
-    list-style-type: none;
-    padding: 0;
+.schedule-alert-container h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: #28a745;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
-.schedule-alert-container li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    padding: 15px;
+.schedule-alert-container h1:hover::after {
+    width: 50%;
 }
 
-/* Match details styling */
-.schedule-alert-container h2 {
-    margin: 0;
-    color: #333;
+.schedule-alert-container h1:hover {
+    color: #28a745;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.schedule-alert-container p {
-    margin: 5px 0;
-    color: #555;
+.schedule-alert-container h1 {
+    cursor: pointer;
 }
 
-/* Styling for the input and button */
+/* Styling for the label */
 .schedule-alert-container label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
     color: #333;
+    font-size: 1rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Underline effect */
+.schedule-alert-container label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #28a745;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effects */
+.schedule-alert-container label:hover {
+    color: #28a745;
+    transform: translateY(-2px);
+}
+
+.schedule-alert-container label:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Styling for the input and button */
 .schedule-alert-container input[type="number"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schedule-alert-container input[type="number"]:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+    outline: none;
 }
 
 .schedule-alert-container button {
@@ -64,14 +106,19 @@
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .schedule-alert-container button:hover {
     background-color: #218838;
+    transform: translateY(-2px);
 }
 
 .schedule-alert-container button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+#mani
+{
+        color: blue;
 }

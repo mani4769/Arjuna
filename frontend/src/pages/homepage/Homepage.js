@@ -1,10 +1,8 @@
-import React, {  useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Homepage.css';
-
 
 import rohii from '../../images/rohit.png';
 import kohli from '../../images/kohli.png';
-import rohit from '../../images/rohit.png';
 import first from '../../images/first.png';
 import second from '../../images/second.png';
 import third from '../../images/third.png';
@@ -17,6 +15,7 @@ import rohitHighlight from '../../images/rohit.jpg';
 const Homepage = () => {
     const [userPopupVisible, setUserPopupVisible] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
+
     useEffect(() => {
         openPopup();
 
@@ -34,12 +33,12 @@ const Homepage = () => {
             });
             items[index].classList.add('middle');
             items[index].style.transform = 'scale(1.3)';
-        }
+        };
 
         const autoSlide = () => {
             index = (index + 1) % items.length;
             updateCarousel();
-        }
+        };
 
         // Initialize the carousel with the first image
         updateCarousel();
@@ -54,7 +53,7 @@ const Homepage = () => {
         const popup = document.getElementById("popup");
         popup.classList.add("show");
         document.body.classList.add("blurred");
-    }
+    };
 
     const closePopup = () => {
         const popup = document.getElementById("popup");
@@ -62,11 +61,12 @@ const Homepage = () => {
         document.body.classList.remove("blurred");
         setTimeout(() => {
             popup.style.display = "none";
-        }, 500); // Match the transition duration
-    }
+        }, 500); 
+    };
+
     const handleProfileClick = () => {
         console.log("Profile button clicked");
-        const user = JSON.parse(localStorage.getItem('userDetails'));
+        const user = JSON.parse(sessionStorage.getItem('userDetails'));
         if (user) {
             setUserDetails(user);
         } else {
@@ -74,30 +74,26 @@ const Homepage = () => {
         }
         setUserPopupVisible(true);
     };
+
     const closeUserPopup = () => {
         setUserPopupVisible(false);
-      
     };
- 
 
     const closeUsersPopup = () => {
         setUserPopupVisible(false);
-        localStorage.removeItem('userDetails');
+        sessionStorage.removeItem('userDetails');
         window.location.href = '/';
     };
- 
 
     return (
         <div className="container">
             <div className="popup" id="popup">
                 <div className="image-container">
-                    <img src={second}alt="Image 1" />
-                    <img src={third} alt="Image 2" />
-                    <img src={first} alt="Image 3" />
                     <img src={second} alt="Image 1" />
                     <img src={third} alt="Image 2" />
                     <img src={first} alt="Image 3" />
-                </div><hr /><br /><br /><br /><br /><br />
+                </div>
+                <hr /><br /><br /><br /><br /><br />
                 <center onClick={closePopup} style={{ cursor: 'pointer' }}>
                     <svg className="arrows">
                         <path className="a1" d="M0 0 L30 32 L60 0"></path>
@@ -115,7 +111,8 @@ const Homepage = () => {
                     <a href="/teams" className="nav-item">Teams</a>
                     <a href="/livescore" className="nav-item">Livescore</a>
                     <a href="/alert" className="nav-item">Notifications</a>
-                    <a href="/userschedule" className="nav-item">Sechudles</a>
+                    <a href="/userschedule" className="nav-item">Schedules</a>
+                    <a href="/feedback" className="nav-item">Feedback</a>
                 </nav>
             </aside>
         
@@ -128,7 +125,6 @@ const Homepage = () => {
                 <section className="today-match">
                     <h2>Match Summary</h2>
                     <div className="carousel">
-                        {/* <button className="carousel-arrow left-arrow">&lt;</button> */}
                         <div className="carousel-wrapper">
                             <div className="carousel-container">
                                 <div className="carousel-item">
@@ -148,65 +144,51 @@ const Homepage = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <button className="carousel-arrow right-arrow">&gt;</button> */}
                     </div>
                     <div className="match-details">
                         <h3>DC vs KKR</h3>
                         <button className="watch-btn">Watch Live</button>
                     </div>
                 </section>
-               
+
                 {userPopupVisible && (
-                <div className="user-popup">
-                    <div className="user-popup-content">
-                        <h3>User Profile</h3>
-                        {userDetails ? (
-                            <div>
-                                <p><strong>Name:</strong> {userDetails.name}</p>
-                                <p><strong>Email:</strong> {userDetails.email}</p>
-                                <p><strong>Registration Number:</strong> {userDetails.regNo}</p>
-                            </div>
-                        ) : (
-                            <p>No user details found.</p>
-                        )}
-                        <button onClick={closeUserPopup}>Close</button>
-                        <button onClick={closeUsersPopup}>Logout</button>
-                     </div>
-                </div>
-                
-            )}
+                    <div className="user-popup">
+                        <div className="user-popup-content">
+                            <h3>User Profile</h3>
+                            {userDetails ? (
+                                <div>
+                                    <p><strong>Name:</strong> {userDetails.name}</p>
+                                    <p><strong>Email:</strong> {userDetails.email}</p>
+                                    <p><strong>Registration Number:</strong> {userDetails.regNo}</p>
+                                </div>
+                            ) : (
+                                <p>No user details found.</p>
+                            )}
+                            <button onClick={closeUserPopup}>Close</button>
+                            <button onClick={closeUsersPopup}>Logout</button>
+                        </div>
+                    </div>
+                )}
             </main>
             <section className="highlights">
-                    <h2>Highlights</h2>
-                    <div className="highlight-cards">
-                        <div className="highlight-card">
-                            <img src={kohliHighlight} alt="Highlight 1" />
-                            <p>CSK vs MI: Highlights</p>
-                        </div>
-                        <div className="highlight-card">
-                            <img src={kohliiHighlight} alt="Highlight 2" />
-                            <p>RCB vs SRH: Highlights</p>
-                        </div>
-                        <div className="highlight-card">
-                            <img src={rohitHighlight} alt="Highlight 3" />
-                            <p>KKR vs RR: Highlights</p>
-                        </div>
-                      
+                <h2>Highlights</h2>
+                <div className="highlight-cards">
+                    <div className="highlight-card">
+                        <img src={kohliHighlight} alt="Highlight 1" />
+                        <p>CSK vs MI: Highlights</p>
                     </div>
-                   
-                </section>
+                    <div className="highlight-card">
+                        <img src={kohliiHighlight} alt="Highlight 2" />
+                        <p>RCB vs SRH: Highlights</p>
+                    </div>
+                    <div className="highlight-card">
+                        <img src={rohitHighlight} alt="Highlight 3" />
+                        <p>KKR vs RR: Highlights</p>
+                    </div>
+                </div>
+            </section>
         </div>
-   
     );
 };
 
-{/* // export default Homepage;
-// function Homepage(){
-//     return(
-//         <>
-//         <h1>homepage</h1>
-//         </>
-//     )
-// } */}
-
-export default Homepage
+export default Homepage;

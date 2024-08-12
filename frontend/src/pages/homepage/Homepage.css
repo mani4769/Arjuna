@@ -69,10 +69,10 @@
    justify-content: space-between;
    align-items: center;
    padding: 20px;
-   background-color: #b50909; /* Optional: Add background color for better visibility */
+   background-color: #b0cf15; /* Optional: Add background color for better visibility */
    position: fixed;
    top: 0;
-   left: 250px; /* Align with the main content */
+   left: 290px; /* Align with the main content */
    width: calc(100% - 250px); /* Full width minus sidebar width */
    z-index: 2;
    margin-top: 0; /* Adjusted margin */
