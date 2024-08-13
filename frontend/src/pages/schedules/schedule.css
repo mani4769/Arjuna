@@ -3,31 +3,32 @@
   width: 50%;
   margin: 50px auto;
   padding: 20px;
-  background-color: #ede8f5;
+  background-color: #2c2c2c; /* Default background color */
+  color: #e0e0e0; /* Default text color */
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .schedule-container:hover {
   transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #d6b4fc; /* Background color on hover */
+  color: #fff; /* Text color on hover */
 }
 
 .schedule-container h1 {
   text-align: center;
   font-size: 2.5rem;
-  color: #333;
+  color: inherit; /* Inherit text color from .schedule-container */
   margin-bottom: 20px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
   position: relative; /* Required for absolute positioning of underline */
   padding-bottom: 10px; /* Space for underline */
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .schedule-container h1:hover {
-  color: #007bff;
+  color: #fff; /* Text color on hover */
 }
 
 .schedule-container h1::after {
@@ -38,18 +39,18 @@
   transform: translateX(-50%);
   width: 50%;
   height: 4px;
-  background-color: #007bff;
+  background-color: #fff; /* Underline color on hover */
   border-radius: 2px;
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-.schedule-container h1:hover::after {
+.schedule-container:hover h1::after {
   width: 70%;
-  background-color: #0056b3;
+  background-color: #fff; /* Underline color on hover */
 }
 
 .schedule-container h1:hover {
-  text-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+  text-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* Text shadow on hover */
 }
 
 form {
@@ -60,20 +61,19 @@ form {
 
 form label {
   font-size: 1.2rem;
-  color: #555;
+  color: inherit; /* Inherit text color from .schedule-container */
   margin-bottom: 5px;
   transition: color 0.3s ease;
 }
 
 form label:hover {
-  color: #007bff;
+  color: #fff; /* Label color on hover */
 }
+
 form select {
   font-size: 7.2rem; /* Increase font size */
   padding: 12px;     /* Increase padding for better appearance */
-     /* Adjust height to fit the content */
 }
-
 
 form select, 
 form input[type="date"], 
@@ -84,7 +84,6 @@ form input[type="time"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -93,9 +92,9 @@ form select:focus,
 form input[type="date"]:focus, 
 form input[type="text"]:focus, 
 form input[type="time"]:focus {
-  border-color: #cde11b;
+  border-color: #00bcd4; /* Border color on focus */
   outline: none;
-  box-shadow: 0 0 5px rgba(205, 225, 27, 0.5);
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.5); /* Box shadow on focus */
 }
 
 button {
@@ -125,8 +124,9 @@ button:active {
 }
 
 /* body {
-  background: linear-gradient(#5680e991, #84ceeb9a, #5ab9ea, #c1c8e4b4, #8760d093);
+  background: linear-gradient(135deg, #5680e9, #84ceeb, #5ab9ea, #c1c8e4, #8760d0);
 } */
+
 
 /* Responsive Styles */
 @media (max-width: 1200px) {

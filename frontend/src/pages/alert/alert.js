@@ -31,13 +31,13 @@ function ScheduleAlert() {
             setEmail(a.email)           
             if (alertTime > new Date()) {
                 axios.post('http://localhost:5000/api/alert', {
-                    email,
+                    email:email,
                     team1: schedule.team1,
                     team2: schedule.team2,
                     date: schedule.date,
                     stadium: schedule.stadium,
                     time: schedule.time,
-                    minutes: minutes // Ensure minutes are sent to the backend
+                    minutes: minutes 
                 })
                 .then(response => {
 

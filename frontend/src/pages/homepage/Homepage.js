@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
 
@@ -8,17 +9,20 @@ import second from '../../images/second.png';
 import third from '../../images/third.png';
 import ipllogo from '../../images/ipllogo.jpg';
 import profile from '../../images/profile.jpg';
-import kohliHighlight from '../../images/kohli.jpg';
-import kohliiHighlight from '../../images/kohlii.jpg';
-import rohitHighlight from '../../images/rohit.jpg';
+import high from '../../images/highligths.png';
+import fix from '../../images/fix1.png';
+import live from '../../images/live.png';
+import winn from '../../images/WINN.png';
+import srkrpos from '../../images/SRKRpos.png';
+import bat from '../../images/BAT.png';
+import bow from '../../images/BOW.png';
+import mostruns from '../../images/mostruns.png';
 
 const Homepage = () => {
     const [userPopupVisible, setUserPopupVisible] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
 
     useEffect(() => {
-        openPopup();
-
         const carouselContainer = document.querySelector('.carousel-container');
         const items = Array.from(document.querySelectorAll('.carousel-item'));
         let index = 0; // Start with the first image
@@ -33,12 +37,12 @@ const Homepage = () => {
             });
             items[index].classList.add('middle');
             items[index].style.transform = 'scale(1.3)';
-        };
+        }
 
         const autoSlide = () => {
             index = (index + 1) % items.length;
             updateCarousel();
-        };
+        }
 
         // Initialize the carousel with the first image
         updateCarousel();
@@ -53,7 +57,7 @@ const Homepage = () => {
         const popup = document.getElementById("popup");
         popup.classList.add("show");
         document.body.classList.add("blurred");
-    };
+    }
 
     const closePopup = () => {
         const popup = document.getElementById("popup");
@@ -61,11 +65,10 @@ const Homepage = () => {
         document.body.classList.remove("blurred");
         setTimeout(() => {
             popup.style.display = "none";
-        }, 500); 
-    };
+        }, 500); // Match the transition duration
+    }
 
     const handleProfileClick = () => {
-        console.log("Profile button clicked");
         const user = JSON.parse(sessionStorage.getItem('userDetails'));
         if (user) {
             setUserDetails(user);
@@ -86,14 +89,22 @@ const Homepage = () => {
     };
 
     return (
+        
         <div className="container">
+
+          
+                
             <div className="popup" id="popup">
                 <div className="image-container">
                     <img src={second} alt="Image 1" />
                     <img src={third} alt="Image 2" />
                     <img src={first} alt="Image 3" />
+                    <img src={second} alt="Image 1" />
+                    <img src={third} alt="Image 2" />
+                    
+                    
                 </div>
-                <hr /><br /><br /><br /><br /><br />
+                <hr />
                 <center onClick={closePopup} style={{ cursor: 'pointer' }}>
                     <svg className="arrows">
                         <path className="a1" d="M0 0 L30 32 L60 0"></path>
@@ -102,45 +113,47 @@ const Homepage = () => {
                     </svg>
                 </center>
             </div>
+           
             <aside className="sidebar">
                 <div className="logo">
                     <img src={ipllogo} alt="IPL Logo" />
                 </div>
-                <nav className="nav">
-                    <a href='/homepage' className="nav-item">Home</a>
-                    <a href="/teams" className="nav-item">Teams</a>
-                    <a href="/livescore" className="nav-item">Livescore</a>
-                    <a href="/alert" className="nav-item">Notifications</a>
-                    <a href="/userschedule" className="nav-item">Schedules</a>
-                    <a href="/feedback" className="nav-item">Feedback</a>
-                </nav>
+                <div className='butt'>
+               <button>Home</button>
+               <button>Teams</button>
+               <button>LiveScore</button>
+               <button>Notifications</button>
+               <button>Schedules</button>
+               </div>
             </aside>
         
             <main className="main-content">
-                <header className="header">
-                    <div className="user-profile" onClick={handleProfileClick}>
-                        <img src={profile} alt="User Profile" />
-                    </div>
-                </header>
+           
                 <section className="today-match">
-                    <h2>Match Summary</h2>
+                <div onClick={handleProfileClick}>
+                <img src={profile}style={{marginLeft:'170vh', marginTop:'18vh',height:'90px'}} alt="User Profile" />
+
+                    </div>
+                 <div  className='mytext'>
+                    <h2 >Match Summary</h2>
+                    </div>
                     <div className="carousel">
                         <div className="carousel-wrapper">
                             <div className="carousel-container">
                                 <div className="carousel-item">
-                                    <img src={rohii} alt="Match Image 1" />
+                                    <img src={bat} alt="Match Image 1" />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={kohli} alt="Match Image 2" />
+                                    <img src={bow} alt="Match Image 2" />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={rohii} alt="Match Image 4" />
+                                    <img src={mostruns} alt="Match Image 3" />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={rohii} alt="Match Image 5" />
+                                    <img src={srkrpos} alt="Match Image 4" />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={kohli} alt="Match Image 6" />
+                                    <img src={winn} alt="Match Image 5" />
                                 </div>
                             </div>
                         </div>
@@ -150,7 +163,7 @@ const Homepage = () => {
                         <button className="watch-btn">Watch Live</button>
                     </div>
                 </section>
-
+               
                 {userPopupVisible && (
                     <div className="user-popup">
                         <div className="user-popup-content">
@@ -171,18 +184,20 @@ const Homepage = () => {
                 )}
             </main>
             <section className="highlights">
+                <div className='mytext'>
                 <h2>Highlights</h2>
+                </div>
                 <div className="highlight-cards">
                     <div className="highlight-card">
-                        <img src={kohliHighlight} alt="Highlight 1" />
+                        <img src={high} alt="Highlight 1" />
                         <p>CSK vs MI: Highlights</p>
                     </div>
                     <div className="highlight-card">
-                        <img src={kohliiHighlight} alt="Highlight 2" />
+                        <img src={live} alt="Highlight 2" />
                         <p>RCB vs SRH: Highlights</p>
                     </div>
                     <div className="highlight-card">
-                        <img src={rohitHighlight} alt="Highlight 3" />
+                        <img src={fix} alt="Highlight 3" />
                         <p>KKR vs RR: Highlights</p>
                     </div>
                 </div>
@@ -192,3 +207,6 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+
+

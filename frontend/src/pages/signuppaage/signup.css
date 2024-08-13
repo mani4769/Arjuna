@@ -1,3 +1,4 @@
+
 .container {
   display: flex;
   flex-direction: column;
@@ -240,4 +241,38 @@ input#name{
 input#regNo{
   border-radius: 30px;
   width: 60vh;
+}
+
+
+
+.signup .image {
+  position: relative; /* Establish a positioning context for absolute elements */
+  overflow: hidden; /* Ensure the overlay doesn't exceed the image boundaries */
+}
+
+.signup .image img {
+  max-width: 100%;
+  height: auto; 
+  border-radius: 12px; /* Maintain rounded corners */
+  transition: transform 0.3s ease; /* Smooth scaling transition */
+}
+
+.signup .image:hover img {
+  transform: scale(1.1); /* Scale up the image on hover */
+}
+
+.signup .image::after {
+  content: ""; /* Create a pseudo-element for the overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0, 0, 0, 0.5);  */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.signup .image:hover::after {
+  opacity: 1; /* Show the overlay on hover */
 }

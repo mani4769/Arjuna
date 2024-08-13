@@ -1,4 +1,3 @@
-/* Container for the ScheduleAlert component */
 .schedule-alert-container {
     max-width: 800px;
     margin: 0 auto;
@@ -117,8 +116,4 @@
 .schedule-alert-container button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
-#mani
-{
-        color: blue;
 }

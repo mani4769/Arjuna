@@ -8,32 +8,31 @@ function Registration() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const action = submitButtonText;
         const formData = {
             name: event.target.name.value,
             regNo: event.target.registerId.value,
             email: event.target.email.value,
-            role: event.target.roll.value,
-            runs: event.target.runs.value,
-            matches: event.target.matches.value,
-            wickets: event.target.wickets.value,
+            role: event.target.role.value,
+            runs: Number(event.target.runs.value),
+            matches: Number(event.target.matches.value),
+            wickets: Number(event.target.wickets.value),
             teamName: event.target.teamName.value,
             teamCode: event.target.teamCode.value
         };
 
         try {
             let response;
-            if (action === 'Register') {
-                response = await axios.post('http://localhost:5000/registerTeam', formData);
+            if (submitButtonText === 'Register') {
+                response = await axios.post('http://localhost:5000/registration', formData);
                 alert(response.data.message);
-            } else if (action === 'Update') {
+            } else if (submitButtonText === 'Update') {
                 response = await axios.put(`http://localhost:5000/updateTeam/${formData.email}`, formData);
                 alert(response.data.message);
             }
             resetForm();
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert('Error: ' + error.response?.data.message || error.message);
+            alert('Error: ' + (error.response?.data?.message || error.message));
         }
     };
 
@@ -47,7 +46,7 @@ function Registration() {
                 resetForm();
             } catch (error) {
                 console.error('Error deleting user:', error);
-                alert('Error: ' + error.response?.data.message || error.message);
+                alert('Error: ' + (error.response?.data?.message || error.message));
             }
         }
     };
@@ -59,42 +58,51 @@ function Registration() {
     };
 
     return (
-        <div>
-            <div class="top">
-                <h1 style={{ padding:"0.5px",marginLeft: "6vh", marginTop: "auto", fontStyle:""}}>TEAM REGISTRATIONS</h1>
+        <div className='npage-con'>
+            <div className="top">
+                <h1 style={{ padding: "0.5px", marginLeft: "6vh", marginTop: "auto" }}>TEAM REGISTRATIONS</h1>
             </div>
             
-            <div id="formcContainer">
-                <h2 id="formTitle"style={{fontFamily:'Cambria',fontSize:'5vh'}}>{formTitle}</h2>
+            <div id="formContainer">
+                <h2 id="formTitle" style={{ fontFamily: 'Cambria', fontSize: '5vh' }}>{formTitle}</h2>
                 <form id="playerForm" onSubmit={handleFormSubmit}>
-                    <label htmlFor="name" style={{marginRight:'70vh'}}>Name:</label>
-                    <input type="text" id="namee" required />
-                    <label htmlFor="registerId" style={{marginRight:'52vh',fontFamily:'monospace'}}>Register ID:</label>
-                    <input type="text" id="RegisterId" required />
-                    <label htmlFor="email"style={{marginRight:'70vh'}}>Email:</label>
-                    <input type="email" id="emaill" required style={{marginLeft:'1vh'}}/>
-                    <label htmlFor="roll"style={{marginRight:'70vh'}}>Role:</label>
-                    <input type="text" placeholder='batsman or bowler or allrounder' id="roll" required />
-                    <label htmlFor="runs"style={{marginRight:'47vh'}}>Number of Runs:</label>
-                    <input type="text" id="runs" required />
-                    <label htmlFor="matches"style={{marginRight:'46vh'}}>Number of matches:</label>
-                    <input type="text" id="matches" required />
-                    <label htmlFor="wickets"style={{marginRight:'46vh'}}>Number of wickets:</label>
-                    <input type="text" id="wickets" required />
-                    <label htmlFor="teamName"style={{marginRight:'52vh'}}>Team Name:</label>
-                    <input type="text" id="teamName" required />
-                    <label htmlFor="teamCode"style={{marginRight:'52vh'}}>Team Code:</label>
-                    <select id="teamCode" required>
-                        <option value="" disabled selected>Select Team Code</option>
+                    <label htmlFor="name" style={{ marginRight: '70vh' }}>Name:</label>
+                    <input type="text" id="name" name="name" required />
+
+                    <label htmlFor="registerId">Register ID:</label>
+                    <input type="text" id="registerId" name="registerId" required />
+
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email" name="email" required style={{ marginLeft: '1vh' }} />
+
+                    <label htmlFor="role" style={{ marginRight: '70vh' }}>Role:</label>
+                    <input type="text" id="role" name="role" placeholder='Batsman, Bowler, or All-rounder' required />
+
+                    <label htmlFor="runs" style={{ marginRight: '47vh' }}>Number of Runs:</label>
+                    <input type="text" id="runs" name="runs" required />
+
+                    <label htmlFor="matches" >Number of Matches:</label>
+                    <input type="text" id="matches" name="matches" required />
+
+                    <label htmlFor="wickets">Number of Wickets:</label>
+                    <input type="text" id="wickets" name="wickets" required />
+
+                    <label htmlFor="teamName" style={{ marginRight: '52vh' }}>Team Name:</label>
+                    <input type="text" id="teamName" name="teamName" required />
+
+                    <label htmlFor="teamCode" style={{ marginRight: '52vh' }}>Team Code:</label>
+                    <select id="teamCode" name="teamCode" required defaultValue="">
+                        <option value="" disabled>Select Team Code</option>
                         <option value="TC001">TC001</option>
                         <option value="TC002">TC002</option>
                         <option value="TC003">TC003</option>
                         <option value="TC004">TC004</option>
                     </select>
+
                     <div className="Rbutton-container">
-                        <button type="submit" id="submitBtn" style={{color:'white',fontSize:'2.5vh'}}>{submitButtonText}</button>
-                        <button type="button" id="updateBtn" style={{color:'white',fontSize:'2.5vh'}} onClick={() => setSubmitButtonText('Update')}>Update</button>
-                        <button type="button" id="deleteBtn" style={{color:'white',fontSize:'2.5vh'}} onClick={handleDeleteClick}>Delete</button>
+                        <button type="submit" id="submitBtn" style={{ color: 'white', fontSize: '2.5vh' }}>{submitButtonText}</button>
+                        <button type="button" id="updateBtn" style={{ color: 'white', fontSize: '2.5vh' }} onClick={() => setSubmitButtonText('Update')}>Update</button>
+                        <button type="button" id="deleteBtn" style={{ color: 'white', fontSize: '2.5vh' }} onClick={handleDeleteClick}>Delete</button>
                     </div>
                 </form>
             </div>

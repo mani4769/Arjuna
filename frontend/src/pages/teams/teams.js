@@ -70,7 +70,7 @@ const Teams = () => {
     }
 
     return (
-        <div>
+        <div className='page-container'>
             <header>
                 <h1>Cricket Team Management</h1>
             </header>

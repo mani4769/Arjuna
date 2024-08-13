@@ -92,7 +92,7 @@ const SchedulePage = () => {
           <label htmlFor="time">Time:</label>
           <input type="time" id="time" value={scheduleData.time} onChange={handleInputChange} required />
         </div>
-        <button type="submit">Create Schedule</button>
+        <button type="submit" style={{backgroundColor:'#7f4caf',borderRadius:'20vh',width:'20vh',marginLeft:'32vh',boxshadow: 'inset 0 0 7px rgba(0,0,0,10)',fontSize:'2.2vh'}}>Create Schedule</button>
       </form>
     </div>
   

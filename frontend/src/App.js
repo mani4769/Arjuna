@@ -9,13 +9,16 @@ import Registration from './pages/registration/registration.js';
 import Schedulepage from './pages/schedules/SchedulePage.js';
 import UserSchedulePage from './pages/userschedulepage/userschedule.js';
 import AdminDashboard  from './pages/admindashboard/admindashboard.js';
-import Chart  from './pages/Chart/chart.js';
 import Admin from './pages/Adminlogin/admin.js';
 import livescoreapp from './pages/livescoreapp/livescoreapp.js';
 import LiveScoreApp from './pages/livescoreapp/livescoreapp.js';
 import Userfeedback from './pages/userfeedback/userfeedback.js';
 import AdminFeedback from './pages/feedback/adminfeedback.js';
 import Makeadmin   from './pages/makeadmin/makeadmin.js';
+import Passwordpage from './pages/passwordpage/passwordpage.js';
+import UserChart from './pages/Chart/Chart.js';
+
+
 function MainApp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPopup, setShowPopup] = useState(true);
@@ -47,6 +50,7 @@ function MainApp() {
         element={<Teams/>}
         />
        )
+
        (
         <Route
         path='/alert'
@@ -80,7 +84,7 @@ function MainApp() {
       (
         <Route
         path='/chart'
-        element={<Chart/>}
+        element={<UserChart/>}
         />
       )
       (
@@ -113,8 +117,13 @@ function MainApp() {
         element={<Makeadmin/>}
         />
       )
-      
-
+      (
+        <Route
+        path='/passwordpage'
+        element={<Passwordpage/>}
+        />
+      )
+     
       </Routes>
       
     // </Router>

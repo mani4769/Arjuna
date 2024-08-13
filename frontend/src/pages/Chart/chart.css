@@ -1,0 +1,48 @@
+.chart-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard h2 {
+    text-align: center;
+    color: #343a40;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #e9ecef;
+   
+  }
+
+  
+  .chart-container canvas {
+    padding: 10px;
+  }
+  
+  .chart-container .chartjs-render-monitor {
+    max-height: 400px;
+    max-width: 600px;
+    object-fit: cover;
+  }
+  
+  /* Adjust bar thickness and spacing */
+  .chart-container .chartjs-render-monitor > .bar {
+    barPercentage: 0.5;
+    categoryPercentage: 0.6;
+  }
+  
+  .chart-container .chartjs-render-monitor .barElement {
+    margin-right: 10px;
+  }
+  

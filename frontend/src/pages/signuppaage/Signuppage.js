@@ -5,13 +5,13 @@ import './signup.css';
 import logo from '../../images/logo.jpg';
 import cricketLogo from '../../images/PLAYER.png';
 import videosrc from '../../images/video.mp4';
-import Popup from '../../popup'; // Ensure Popup is imported
+import Popup from '../../popup'; 
 
 const SignupPage = ({ setIsLoggedIn }) => {
   const [isVideoOverlayActive, setIsVideoOverlayActive] = useState(false);
   const [isSignupHidden, setIsSignupHidden] = useState(false);
   const [formData, setFormData] = useState({ name: '', regNo: '', email: '' });
-  const [showPopup, setShowPopup] = useState(false); // Manage popup visibility
+  const [showPopup, setShowPopup] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/signup', formData);
-      alert(response.data.message); // Access the 'message' property
+      alert(response.data.message); 
       setFormData({ name: '', regNo: '', email: '' });
     } catch (error) {
       alert(error.response.data.message || 'An error occurred');
@@ -35,10 +35,10 @@ const SignupPage = ({ setIsLoggedIn }) => {
     console.log('Login button clicked');
     try {
       const response = await axios.post('http://localhost:5000/login', { regNo: formData.regNo });
-      alert(response.data.message); // Access the 'message' property
+      alert(response.data.message); 
       setIsVideoOverlayActive(true);
   
-      // Store user details in localStorage
+   
       sessionStorage.setItem('userDetails', JSON.stringify(formData));
   
       setTimeout(() => {
@@ -54,7 +54,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
 
   const handleVideoEnd = () => {
     setIsVideoOverlayActive(false);
-    setShowPopup(true); // Show the popup after video ends
+    setShowPopup(true); 
   };
 
   return (

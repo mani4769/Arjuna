@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const bcrypt = require('bcrypt');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,30 +16,26 @@ app.use(bodyParser.json());
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-// Define User schema and model
-const userSchema = new mongoose.Schema({
+/// Player and Team schemas
+const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  regNo: { type: String, required: true },
-  email: { type: String, required: true, unique: true }
-});
-
-const User = mongoose.model('User', userSchema);
-
-// Define Team schema and model
-const teamSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  regNo: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
   role: { type: String, required: true },
   runs: { type: Number, required: true },
   matches: { type: Number, required: true },
   wickets: { type: Number, required: true },
-  teamName: { type: String, required: true },
-  teamCode: { type: String, required: true }
+  email : {type: String, required:true}
 });
 
+const teamSchema = new mongoose.Schema({
+  teamName: { type: String, required: [true,"must have a team name"]},
+  teamCode: { type: String, required: [true,"must have team code"]},
+  players: [playerSchema]
+});
+
+// teamSchema.index({ teamName: 1, teamCode: 1 }, { unique: true });
+
 const Team = mongoose.model('Team', teamSchema);
+
 
 // Define Schedule schema and model
 const scheduleSchema = new mongoose.Schema({
@@ -50,6 +47,7 @@ const scheduleSchema = new mongoose.Schema({
 });
 
 const Schedule = mongoose.model('Schedule', scheduleSchema);
+
 
 // Nodemailer setup
 const transporter = nodemailer.createTransport({
@@ -107,61 +105,88 @@ app.post('/login', async (req, res) => {
 });
 
 // Register team route
-app.post('/registerTeam', async (req, res) => {
-  const { name, regNo, email, role, runs, matches, wickets, teamName, teamCode } = req.body;
+app.post('/registration', async (req, res) => {
   try {
-    const teamExists = await Team.findOne({ regNo });
-    if (teamExists) {
-      return res.status(400).send({ message: 'Team member already registered' });
-    }
-    const newTeam = new Team({ name, regNo, email, role, runs, matches, wickets, teamName, teamCode });
-    await newTeam.save();
-    res.status(201).send({ message: 'Team member registered successfully' });
+      const { teamName, teamCode, name, role, runs, matches, wickets, email } = req.body;
+      console.log(req.body,"hai")
+
+      if (!teamName || !teamCode || !name || !role || !email || runs === undefined || matches === undefined || wickets === undefined) {
+          return res.json({ message: 'Missing required fields' });
+      }
+
+      console.log('Received registration:', req.body);
+
+      let team = await Team.findOne({teamName,teamCode});
+
+      if (!team) {
+          console.log('Creating new team:', teamName, teamCode);
+          
+          team = new Team({teamName,teamCode,players:[{name,role,email,runs,matches,wickets}]});
+      } else {
+          console.log('Adding player to existing team:', teamName, teamCode);
+          team.players.push({ name, role, runs, matches, wickets , email});
+      }
+
+      await team.save();
+      console.log('Team saved successfully');
+      res.status(200).json({ message: 'Player registered successfully!' });
   } catch (error) {
-    if (error.code === 11000) { // Duplicate key error
-      res.status(400).send({ message: 'Email already registered' });
-    } else {
-      res.status(500).send({ message: 'Server error' });
-    }
+      console.error('Error during registration:', error.message);
+      res.status(500).json({ message: 'Server error', error:error.message});
   }
 });
 
-// Update team route
 app.put('/updateTeam/:email', async (req, res) => {
   const { email } = req.params;
   const { name, regNo, role, runs, matches, wickets, teamName, teamCode } = req.body;
 
   try {
-    const teamMember = await Team.findOneAndUpdate(
-      { email },
-      { name, regNo, role, runs, matches, wickets, teamName, teamCode },
-      { new: true }
-    );
+      const team = await Team.findOneAndUpdate(
+          { "players.email": email },
+          {
+              $set: {
+                  "players.$.name": name,
+                  "players.$.regNo": regNo,
+                  "players.$.role": role,
+                  "players.$.runs": runs,
+                  "players.$.matches": matches,
+                  "players.$.wickets": wickets,
+                  teamName,
+                  teamCode
+              }
+          },
+          { new: true }
+      );
 
-    if (!teamMember) {
-      return res.status(404).send({ message: 'Team member not found' });
-    }
+      if (!team) {
+          return res.status(404).send({ message: 'Team member not found' });
+      }
 
-    res.send({ message: 'Team member updated successfully' });
+      res.send({ message: 'Team member updated successfully' });
   } catch (error) {
-    res.status(500).send({ message: 'Server error' });
+      console.error('Error updating team member:', error);
+      res.status(500).send({ message: 'Server error' });
   }
 });
 
-// Delete team route
 app.delete('/deleteTeam/:email', async (req, res) => {
   const { email } = req.params;
 
   try {
-    const teamMember = await Team.findOneAndDelete({ email });
+      const team = await Team.findOneAndUpdate(
+          { "players.email": email },
+          { $pull: { players: { email: email } } },
+          { new: true }
+      );
 
-    if (!teamMember) {
-      return res.status(404).send({ message: 'Team member not found' });
-    }
+      if (!team) {
+          return res.status(404).send({ message: 'Team member not found' });
+      }
 
-    res.send({ message: 'Team member deleted successfully' });
+      res.send({ message: 'Team member deleted successfully' });
   } catch (error) {
-    res.status(500).send({ message: 'Server error' });
+      console.error('Error deleting team member:', error);
+      res.status(500).send({ message: 'Server error' });
   }
 });
 
@@ -241,37 +266,44 @@ app.post('/api/alert', async (req, res) => {
 });
 const adminSchema = new mongoose.Schema({
   name: String,
-  regNo: String,
   email: String,
   password: String,
 });
 
 const Admin = mongoose.model('Admin', adminSchema);
 
+// In-memory store for OTPs (consider using a database or caching layer in production)
+const otpStore = {};
+
+
+
+
 app.post('/adminlogin', async (req, res) => {
-  const { name, regNo, email } = req.body;
+  const { name, password, email } = req.body;
 
   try {
-    // Find admin by email
     const admin = await Admin.findOne({ email });
 
     if (!admin) {
       return res.status(404).json({ message: 'Admin not found' });
     }
 
-    // Check if name, regNo, and email match
-    const isMatch = admin.name === name && admin.regNo === regNo && admin.email === email;
+    // Corrected password comparison logic
+    const isMatch = admin.name === name && admin.password === password;
 
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Send an email to the admin
+    // Generate a random OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    otpStore[email] = otp;
+
     const mailOptions = {
-      from: 'your_email@gmail.com',   // Replace with your email
+      from: 'your_email@gmail.com',
       to: email,
-      subject: 'Login Successful',
-      text: `Hello ${name},\n\nYou have successfully logged into the SRKR Cricket Management system.`,
+      subject: 'Your OTP for SRKR Cricket Management Login',
+      text: `Hello ${name},\n\nYour OTP is: ${otp}. Please enter this OTP to complete your login.`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -280,13 +312,24 @@ app.post('/adminlogin', async (req, res) => {
         return res.status(500).json({ message: 'Error sending email' });
       } else {
         console.log('Email sent:', info.response);
-        res.json({ message: 'Login successful and email sent' });
+        res.json({ message: 'OTP sent to email' });
       }
     });
 
   } catch (error) {
     console.error('Server error:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.post('/verifyotp', (req, res) => {
+  const { email, otp } = req.body;
+
+  if (otpStore[email] === otp) {
+    delete otpStore[email]; // Clear the OTP after verification
+    res.json({ message: 'OTP verified, login successful' });
+  } else {
+    res.status(401).json({ message: 'Invalid OTP' });
   }
 });
 const FeedbackSchema = new mongoose.Schema({
@@ -336,6 +379,78 @@ app.post('/admin', async (req, res) => {
       res.status(500).json({ message: 'Failed to add admin' });
   }
 });
+const adminPasswordSchema = new mongoose.Schema({
+  password: {
+    type: String,
+    required: [true, "Password is required"],
+  },
+});
+const AdminPassword = mongoose.model('AdminPassword', adminPasswordSchema, 'adminpasswords');
+app.post('/verifypassword', async (req, res) => {
+  const { password } = req.body;
+
+  try {
+    // Find the stored password
+    const storedPassword = await AdminPassword.findOne();
+    
+    if (!storedPassword || storedPassword.password !== password) {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    // Password is correct, allow navigation to another page
+    res.json({ message: 'Password correct, proceed to the next page' });
+  } catch (error) {
+    console.error('Server error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+app.get('/api/users', async (req, res) => {
+  try {
+    const users = await User.find(); 
+    res.json(users); 
+  } catch (error) {
+    res.status(500).send({ message: 'Server error while fetching users' });
+  }
+});
+app.get('/api/teams', async (req, res) => {
+  try {
+    const teams = await Team.find();
+    res.json(teams);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch teams' });
+  }
+});
+
+app.get('/api/schedules', async (req, res) => {
+  try {
+    const schedules = await Schedule.find();
+    res.json(schedules);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch schedules' });
+  }
+});
+
+app.put('/admin/update-password', async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+      const admin = await Admin.findOne({ email });
+
+      if (admin) {
+          admin.password = newPassword;
+          await admin.save();
+          res.json({ success: true });
+      } else {
+          res.json({ success: false });
+      }
+  } catch (error) {
+      console.error('Error updating password:', error);
+      res.status(500).json({ success: false });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
