@@ -13,7 +13,7 @@ const SchedulePage = () => {
   });
 
   useEffect(() => {
-    // Fetch teams from the server
+   
     axios.get('http://localhost:5000/api/teams')
       .then(response => {
         setTeams(response.data);
@@ -31,13 +31,12 @@ const SchedulePage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if the selected teams are the same
+
     if (scheduleData.team1 === scheduleData.team2) {
       alert('The selected teams cannot be the same.');
       return;
     }
 
-    // Log the data before sending
     console.log(scheduleData);
 
     axios.post('http://localhost:5000/api/schedule', scheduleData)
@@ -92,8 +91,9 @@ const SchedulePage = () => {
           <label htmlFor="time">Time:</label>
           <input type="time" id="time" value={scheduleData.time} onChange={handleInputChange} required />
         </div>
-        <button type="submit" style={{backgroundColor:'#7f4caf',borderRadius:'20vh',width:'20vh',marginLeft:'32vh',boxshadow: 'inset 0 0 7px rgba(0,0,0,10)',fontSize:'2.2vh'}}>Create Schedule</button>
+        <button type="submit" style={{backgroundColor:'#7f4caf',borderRadius:'20vh',width:'20vh',marginLeft:'32vh',boxshadow: 'inset 0 0 7px rgba(0,0,0,10)',fontSize:'2.2vh',marginTop:'3vh'}}>Create Schedule</button>
       </form>
+      <a href='/matchalert'><button  style={{backgroundColor:'#7f4caf',borderRadius:'20vh',width:'20vh',marginLeft:'32vh',boxshadow: 'inset 0 0 7px rgba(0,0,0,10)',fontSize:'2.2vh',marginTop:'3vh'}}>MatchAlert</button></a>
     </div>
   
   );

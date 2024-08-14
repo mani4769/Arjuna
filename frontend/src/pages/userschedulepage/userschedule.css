@@ -4,24 +4,24 @@
   width: 80%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff; /* Light background color for the container */
+  background-color: #ffffff; 
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .user-schedule-container:hover {
-  background-color: #f0f4f8; /* Light gray background on hover */
+  background-color: #f0f4f8; 
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .user-schedule-container h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: #2c3e50; /* Darker color for better contrast */
+  color: #2c3e50; 
   font-family: 'Arial', sans-serif;
-  position: relative; /* Positioning for underline effect */
-  padding-bottom: 10px; /* Space for underline */
+  position: relative; 
+  padding-bottom: 10px; 
 }
 
 .user-schedule-container h1::before {
@@ -32,18 +32,18 @@
   transform: translateX(-50%);
   width: 0%;
   height: 4px;
-  background-color: #3498db; /* Blue underline color */
+  background-color: #3498db; 
   border-radius: 2px;
-  transition: width 0.3s ease; /* Smooth transition */
+  transition: width 0.3s ease; 
 }
 
 .user-schedule-container h1:hover::before {
-  width: 100%; /* Full width on hover */
+  width: 100%; 
 }
 
 .user-schedule-container h1:hover {
-  color: #3498db; /* Bright blue color on hover */
-  text-shadow: 0 4px 6px rgba(52, 152, 219, 0.2); /* Subtle text shadow on hover */
+  color: #3498db;
+  text-shadow: 0 4px 6px rgba(52, 152, 219, 0.2); 
 }
 
 .schedule-table {
@@ -54,7 +54,7 @@
 }
 
 .schedule-table thead tr {
-  background-color: #3498db; /* Bright blue background for the header */
+  background-color: #3498db;
   color: white;
 }
 
@@ -67,24 +67,24 @@
 }
 
 .schedule-table th {
-  background-color: #2980b9; /* Darker blue for table headers */
+  background-color: #2980b9; 
 }
 
 .schedule-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9; /* Very light gray for even rows */
+  background-color: #f9f9f9;
 }
 
 .schedule-table tbody tr:hover {
-  background-color: #e1e9f0; /* Light blue background on row hover */
+  background-color: #e1e9f0; 
   cursor: pointer;
-  transform: scale(1.02); /* Slight scale effect for row hover */
+  transform: scale(1.02); 
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .schedule-table tbody td {
-  color: #333; /* Darker text color for better readability */
+  color: #333; 
 }
 
 .schedule-table tbody td:hover {
-  color: #3498db; /* Blue color for text on hover */
+  color: #3498db; 
 }

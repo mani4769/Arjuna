@@ -5,7 +5,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Header styling */
+
 .schedule-alert-container h1 {
     text-align: center;
     color: #333;
@@ -42,7 +42,7 @@
     cursor: pointer;
 }
 
-/* Styling for the label */
+
 .schedule-alert-container label {
     display: block;
     margin-bottom: 10px;
@@ -54,7 +54,7 @@
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Underline effect */
+
 .schedule-alert-container label::after {
     content: "";
     position: absolute;
@@ -68,7 +68,7 @@
     transition: transform 0.3s ease;
 }
 
-/* Hover effects */
+
 .schedule-alert-container label:hover {
     color: #28a745;
     transform: translateY(-2px);
@@ -79,7 +79,6 @@
     transform-origin: bottom left;
 }
 
-/* Styling for the input and button */
 .schedule-alert-container input[type="number"] {
     width: 100%;
     padding: 10px;

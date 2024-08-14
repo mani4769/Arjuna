@@ -17,6 +17,15 @@ import AdminFeedback from './pages/feedback/adminfeedback.js';
 import Makeadmin   from './pages/makeadmin/makeadmin.js';
 import Passwordpage from './pages/passwordpage/passwordpage.js';
 import UserChart from './pages/Chart/Chart.js';
+import Sdashboard from './pages/superadmin/superadmin.js'
+import MatchAlert from './pages/matchalert/matchalert.js'
+import RegisterUmpire from './pages/umpireregister/Umpirerregister.js';
+import RegisterScorer from './pages/scorerregister/Scorerregister.js';
+import RegisterVenue from './pages/venueregister/venueregister.js';
+import ScheduleMatch from  './pages/ScheduleMatch/schedulematch.js';
+
+
+
 
 
 function MainApp() {
@@ -123,7 +132,42 @@ function MainApp() {
         element={<Passwordpage/>}
         />
       )
-     
+      (
+        <Route
+        path='/superadmin'
+        element={<Sdashboard/>}
+        />
+      )
+      (
+        <Route
+        path='/matchalert'
+        element={<MatchAlert/>}
+        />
+      )
+      (
+        <Route
+        path='/umpire'
+        element={<RegisterUmpire/>}
+        />
+      )
+      (
+        <Route
+        path='/scorer'
+        element={<RegisterScorer/>}
+        />
+      )
+      (
+        <Route
+        path='/venue'
+        element={<RegisterVenue/>}
+        />
+      )
+      (
+        <Route
+        path='/schedulematch'
+        element={<ScheduleMatch/>}
+        />
+      )
       </Routes>
       
     // </Router>

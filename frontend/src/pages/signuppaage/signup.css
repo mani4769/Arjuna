@@ -59,27 +59,25 @@
   background-color: #ede8f5;
   border-radius: 12px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 10);
-  /* transition: transform 0.3s, box-shadow 0.3s; */
   padding: 2rem;
   gap: 2rem;
   position: relative;
   z-index: 1;
-  transition: transform 1s ease; /* For sliding effect */
+  transition: transform 1s ease;
 
 }
 
 .signup:hover {
   transform: scale(1.02);
-  /* box-shadow: 0 6px 12px rgba(0,0,0,0.3); */
   box-shadow: inset 0 0 7px rgba(0, 0, 0, 7);
   
 }
 
 .signup.slideUp {
-  transform: translateY(-100vh); /* Slide up */
+  transform: translateY(-100vh); 
 }
 .signup.hide {
-  display: none; /* Hide the original content after sliding up */
+  display: none; 
 }
 .signup .system {
   flex: 1;
@@ -124,33 +122,30 @@
  
 }
 .signup .system button {
- /* Green background */
-   background-color: #7f4caf;  /* Green background */
-    border: none;               /* Remove border */
-    color: white;               /* White text */
-    padding: 15px 32px;         /* Padding */
-    text-align: center;         /* Center the text */
-    text-decoration: none;      /* Remove underline */
-    display: inline-block;      /* Make the button inline */
-    font-size: 16px;            /* Increase font size */
-    margin: 4px 2px;            /* Small margin */
-    cursor: pointer;            /* Pointer/hand icon */
-    border-radius: 50px;        /* Rounded corners */
-    position: relative;         /* Needed for the pseudo-elements */
-    overflow: hidden;           /* Hide overflow */
-    z-index: 1;                 /* Place above pseudo-elements */
+   background-color: #7f4caf;  
+    border: none;              
+    color: white;            
+    padding: 15px 32px;        
+    text-align: center;         
+    text-decoration: none;     
+    display: inline-block;     
+    font-size: 16px;          
+    margin: 4px 2px;  
+    cursor: pointer;         
+    border-radius: 50px;        
+    position: relative;        
+    overflow: hidden;       
+    z-index: 1;           
     transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: inset 0 0 7px rgba(0, 0, 0, 4);
   
 }
 .signup .system button:hover {
-  /* background-color: #0056b3; */
+
   transform: scale(1.05);
 }
 .signup .image {
-  /* border-radius: 12px;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s; */
+
   flex: 1;
   object-fit: cover;
   mix-blend-mode: darken;
@@ -158,14 +153,14 @@
 }
 .signup .image img {
   max-width: 100%;
-  height: auto; /* Adjust height as needed */
+  height: auto; 
   border-radius: 12px;
-  /* box-shadow: 0 4px 8px rgba(255, 255, 255, 0.729); */
+
 
   
 }
 
-/* Full-screen video overlay styles */
+
 .videoOverlay {
   position: fixed;
   top: 0;
@@ -173,10 +168,10 @@
   width: 100%;
   height: 100%;
   background: black;
-  display: none; /* Initially hidden */
+  display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000; 
 }
 .videoOverlay.active {
   display: flex;
@@ -246,33 +241,32 @@ input#regNo{
 
 
 .signup .image {
-  position: relative; /* Establish a positioning context for absolute elements */
-  overflow: hidden; /* Ensure the overlay doesn't exceed the image boundaries */
+  position: relative; 
+  overflow: hidden; 
 }
 
 .signup .image img {
   max-width: 100%;
   height: auto; 
-  border-radius: 12px; /* Maintain rounded corners */
-  transition: transform 0.3s ease; /* Smooth scaling transition */
+  border-radius: 12px; 
+  transition: transform 0.3s ease; 
 }
 
 .signup .image:hover img {
-  transform: scale(1.1); /* Scale up the image on hover */
+  transform: scale(1.1); 
 }
 
 .signup .image::after {
-  content: ""; /* Create a pseudo-element for the overlay */
+  content: ""; 
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: rgba(0, 0, 0, 0.5);  */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.3s ease; /* Smooth opacity transition */
+  opacity: 0; 
+  transition: opacity 0.3s ease; 
 }
 
 .signup .image:hover::after {
-  opacity: 1; /* Show the overlay on hover */
+  opacity: 1; 
 }

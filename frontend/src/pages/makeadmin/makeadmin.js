@@ -53,11 +53,11 @@ const AddAdminForm = () => {
     };
 
     return (
-        <div className="admin-container">
-            <div className="add-admin-form">
+        <div className="Aadmin-container" style={{marginTop:'10vh'}}>
+            <div className="Aadd-admin-form">
                 <h1>Add New Admin</h1>
                 <form onSubmit={handleAddAdmin}>
-                    <div className="form-item">
+                    <div className="Aform-item">
                         <label>
                             Name:
                             <input
@@ -68,7 +68,7 @@ const AddAdminForm = () => {
                             />
                         </label>
                     </div>
-                    <div className="form-item">
+                    <div className="Aform-item">
                         <label>
                             Email:
                             <input
@@ -79,7 +79,7 @@ const AddAdminForm = () => {
                             />
                         </label>
                     </div>
-                    <div className="form-item">
+                    <div className="Aform-item">
                         <label>
                             Password:
                             <input
@@ -94,10 +94,10 @@ const AddAdminForm = () => {
                 </form>
             </div>
 
-            <div className="update-password-form" style={{marginTop:'25vh',marginLeft:'10vh'}}>
+            <div className="Aupdate-password-form" style={{marginTop:'25vh',marginLeft:'10vh'}}>
                 <h1>Update Admin Password</h1>
                 <form onSubmit={handleUpdatePassword}>
-                    <div className="form-item">
+                    <div className="Aform-item">
                         <label>
                             Email:
                             <input
@@ -108,7 +108,7 @@ const AddAdminForm = () => {
                             />
                         </label>
                     </div>
-                    <div className="form-item">
+                    <div className="Aform-item">
                         <label>
                             New Password:
                             <input

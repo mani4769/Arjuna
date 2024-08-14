@@ -6,7 +6,7 @@ const UserSchedulePage = () => {
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
-    // Fetch schedules from the server
+  
     axios.get('http://localhost:5000/api/schedule')
       .then(response => {
         setSchedules(response.data);

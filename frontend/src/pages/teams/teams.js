@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './teams.css';
@@ -5,7 +6,6 @@ import './teams.css';
 const Teams = () => {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState(null);
-    const [selectedPlayer, setSelectedPlayer] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -28,12 +28,6 @@ const Teams = () => {
 
     const showTeamDetails = (team) => {
         setSelectedTeam(team);
-        setSelectedPlayer(null); // Reset selected player when team changes
-    };
-
-    const showPlayerDetails = (player) => {
-        setSelectedPlayer(player);
-        console.log('Selected player:', player); // Log the selected player
     };
 
     const DisplayTeams = (teams) => {
@@ -70,9 +64,10 @@ const Teams = () => {
     }
 
     return (
-        <div className='page-container'>
+        <div className="page-container">
+           
             <header>
-                <h1>Cricket Team Management</h1>
+                <h1 style={{color:'purple',fontSize:'8vh'}}>Cricket Team Management</h1>
             </header>
             <main>
                 <section id="team-list">
@@ -87,21 +82,16 @@ const Teams = () => {
                                 <p><strong>Registration Number:</strong> {selectedTeam.teamCode}</p>
                                 <p><strong>Players:</strong></p>
                                 <div className="players-list">
-                                    <button
-                                        style={{ fontSize: "2vh", marginLeft: "20vh" }}
-                                        onClick={() => setSelectedPlayer(!selectedPlayer)}
-                                    >
-                                        {selectedTeam.name}
-                                    </button>
+                                    {selectedTeam.players.map((player, index) => (
+                                        <div key={index} className="player-card">
+                                            <p><strong>Name:</strong> {player.name}</p>
+                                            <p><strong>Role:</strong> {player.role}</p>
+                                            <p><strong>Runs:</strong> {player.runs}</p>
+                                            <p><strong>Matches:</strong> {player.matches}</p>
+                                            <p><strong>Wickets:</strong> {player.wickets}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                                {selectedPlayer && (
-                                    <div className="player-details">
-                                        <p><strong>Role:</strong> {selectedTeam.role}</p>
-                                        <p><strong>Runs:</strong> {selectedTeam.runs}</p>
-                                        <p><strong>Matches:</strong> {selectedTeam.matches}</p>
-                                        <p><strong>Wickets:</strong> {selectedTeam.wickets}</p>
-                                    </div>
-                                )}
                             </div>
                         ) : (
                             <p>Select a team to view details</p>
@@ -109,6 +99,7 @@ const Teams = () => {
                     </div>
                 </section>
             </main>
+            
         </div>
     );
 };

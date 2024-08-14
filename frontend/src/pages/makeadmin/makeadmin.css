@@ -1,4 +1,4 @@
-.admin-container {
+.Aadmin-container {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -6,57 +6,88 @@
     font-family: Arial, sans-serif;
     margin: auto;
     max-width: 1200px;
-}
-
-.add-admin-form, .update-password-form {
-    width: 45%;
-    padding: 20px;
-    background-color: #f9f9f9; /* Light background color */
+    background-image: linear-gradient(to bottom, #f7f7f7, #e7e7e7);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    background-image: linear-gradient(135deg, #e0e0e0, #ffffff); /* Gradient background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Aadd-admin-form, .Aupdate-password-form {
+    width: 45%;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 15vh;
-}
-
-h1 {
+    transition: all 0.3s ease;
+  }
+  
+  .Aadd-admin-form:hover, .Aupdate-password-form:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+  
+  h1 {
     text-align: center;
     color: #333;
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-.form-item {
-    margin-bottom: 15px;
-}
-
-label {
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Aform-item {
+    margin-bottom: 20px;
+  }
+  
+  label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
-}
-
-input {
+    font-size: 16px;
+  }
+  
+  input {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for input fields */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease;
-}
-
-input:focus {
-    border-color: #007bff; /* Border color change on focus */
+  }
+  
+  /* input:focus {
+    border-color: #007bff;
     outline: none;
-}
-
-
-
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-button:active {
-    background-color: #004494; /* Even darker blue on click */
-}
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  } */
+  
+  button {
+    /* background-color: #4CAF50; */
+    background-color: #7f4caf; 
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 4);
+    border-radius: 50px;  
+    /* color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px; */
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #7f4caf; 
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 4);
+    border-radius: 50px;  
+    /* background-color: #3e8e41; */
+  }
+  
+  button:active {
+    background-color: #7f4caf; 
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 4);
+    border-radius: 50px;  
+    /* background-color: #3e8e41; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px);
+  }

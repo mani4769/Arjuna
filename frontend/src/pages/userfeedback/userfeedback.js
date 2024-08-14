@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './userfeedbackform.css'; // Import the enhanced CSS file
+import './userfeedbackform.css'; 
 
 const FeedbackForm = () => {
     const [role, setRole] = useState('');
@@ -33,7 +33,7 @@ const FeedbackForm = () => {
     };
 
     return (
-        <div className="feedback-form">
+        <div className="Afeedback-form">
             <h1>Feedback Form</h1>
             <form onSubmit={handleSubmit}>
                 <div className="feedback-item">
@@ -46,7 +46,7 @@ const FeedbackForm = () => {
                         </select>
                     </label>
                 </div>
-                <div className="feedback-item">
+                <div className="Afeedback-item">
                     <label>Rating:</label>
                     <div className="rating-stars">
                         {[1, 2, 3, 4, 5].map((star) => (
@@ -60,7 +60,7 @@ const FeedbackForm = () => {
                         ))}
                     </div>
                 </div>
-                <div className="feedback-item">
+                <div className="Afeedback-item">
                     <label>
                         Comments:
                         <textarea

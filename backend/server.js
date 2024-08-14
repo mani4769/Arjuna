@@ -5,18 +5,28 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+const cron = require('node-cron');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
-// Connect to MongoDB
+
+
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
-/// Player and Team schemas
+  const userSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    regNo: { type: String, required: true },
+    email: { type: String, required: true, unique: true }
+  });
+  
+  const User = mongoose.model('User', userSchema);
+
 const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   role: { type: String, required: true },
@@ -32,12 +42,12 @@ const teamSchema = new mongoose.Schema({
   players: [playerSchema]
 });
 
-// teamSchema.index({ teamName: 1, teamCode: 1 }, { unique: true });
+
 
 const Team = mongoose.model('Team', teamSchema);
 
 
-// Define Schedule schema and model
+
 const scheduleSchema = new mongoose.Schema({
   team1: { type: String, required: true },
   team2: { type: String, required: true },
@@ -49,7 +59,7 @@ const scheduleSchema = new mongoose.Schema({
 const Schedule = mongoose.model('Schedule', scheduleSchema);
 
 
-// Nodemailer setup
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -58,7 +68,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Signup route
+
 app.post('/signup', async (req, res) => {
   const { name, regNo, email } = req.body;
   try {
@@ -74,7 +84,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-// Login route
+
 app.post('/login', async (req, res) => {
   const { regNo } = req.body;
   try {
@@ -104,7 +114,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Register team route
+
 app.post('/registration', async (req, res) => {
   try {
       const { teamName, teamCode, name, role, runs, matches, wickets, email } = req.body;
@@ -190,7 +200,7 @@ app.delete('/deleteTeam/:email', async (req, res) => {
   }
 });
 
-// Fetch teams route
+
 app.get('/api/teams', async (req, res) => {
   try {
     const teams = await Team.find();
@@ -200,7 +210,7 @@ app.get('/api/teams', async (req, res) => {
   }
 });
 
-// Fetch schedule route
+
 app.get('/api/schedule', async (req, res) => {
   try {
     const schedule = await Schedule.find();
@@ -222,21 +232,19 @@ app.post('/api/schedule', async (req, res) => {
   }
 });
 
-// Set alert route
+
 app.post('/api/alert', async (req, res) => {
   const { email, team1, team2, date, stadium, time, minutes } = req.body;
   console.log(req.body);
 
   try {
-    // Calculate match date and time
+   
     const matchDateTime = new Date(`${date}T${time}:00`);
 
-    // Validate date and time
     if (isNaN(matchDateTime.getTime())) {
       return res.status(400).send({ message: 'Invalid date or time format' });
     }
 
-    // Calculate alert time
     const alertTime = matchDateTime.getTime() - minutes * 60000;
 
     if (alertTime < Date.now()) {
@@ -272,7 +280,6 @@ const adminSchema = new mongoose.Schema({
 
 const Admin = mongoose.model('Admin', adminSchema);
 
-// In-memory store for OTPs (consider using a database or caching layer in production)
 const otpStore = {};
 
 
@@ -288,14 +295,14 @@ app.post('/adminlogin', async (req, res) => {
       return res.status(404).json({ message: 'Admin not found' });
     }
 
-    // Corrected password comparison logic
+
     const isMatch = admin.name === name && admin.password === password;
 
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Generate a random OTP
+
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     otpStore[email] = otp;
 
@@ -326,7 +333,7 @@ app.post('/verifyotp', (req, res) => {
   const { email, otp } = req.body;
 
   if (otpStore[email] === otp) {
-    delete otpStore[email]; // Clear the OTP after verification
+    delete otpStore[email];
     res.json({ message: 'OTP verified, login successful' });
   } else {
     res.status(401).json({ message: 'Invalid OTP' });
@@ -349,7 +356,7 @@ app.post('/feedback', async (req, res) => {
       res.status(500).send('Error submitting feedback.');
   }
 });
-// server.js or app.js
+
 app.get('/feedback', async (req, res) => {
   try {
       const feedbacks = await Feedback.find({});
@@ -359,12 +366,12 @@ app.get('/feedback', async (req, res) => {
   }
 });
 
-// Endpoint to add a new admin
+
 app.post('/admin', async (req, res) => {
   try {
       const { name, email, password } = req.body;
 
-      // Check if admin already exists
+
       const existingAdmin = await Admin.findOne({ email });
       if (existingAdmin) {
           return res.status(400).json({ message: 'Admin already exists' });
@@ -390,14 +397,13 @@ app.post('/verifypassword', async (req, res) => {
   const { password } = req.body;
 
   try {
-    // Find the stored password
+
     const storedPassword = await AdminPassword.findOne();
     
     if (!storedPassword || storedPassword.password !== password) {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
-    // Password is correct, allow navigation to another page
     res.json({ message: 'Password correct, proceed to the next page' });
   } catch (error) {
     console.error('Server error:', error);
@@ -449,7 +455,290 @@ app.put('/admin/update-password', async (req, res) => {
       res.status(500).json({ success: false });
   }
 });
+app.post('/api/get-player-emails', async (req, res) => {
+  try {
+      const { teamNames } = req.body;
 
+      if (!teamNames || !Array.isArray(teamNames)) {
+          return res.status(400).json({ message: 'Invalid team names provided' });
+      }
+
+      const teams = await Team.find({ teamName: { $in: teamNames } });
+
+      if (!teams || teams.length === 0) {
+          return res.status(404).json({ message: 'Teams not found' });
+      }
+
+      const emails = teams.reduce((acc, team) => {
+          console.log('manikanta')
+          const teamEmails = team.players.map(player => player.email);
+          return acc.concat(teamEmails);
+      }, []);
+
+      res.status(200).json({ emails });
+  } catch (error) {
+      console.error('Error fetching player emails:', error.message);
+      res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+app.post('/api/set-alert', async (req, res) => {
+  console.log('hii')
+  try {
+    const { teamNames, dateTime, minutes } = req.body;
+
+    if (!teamNames || !Array.isArray(teamNames) || !dateTime || !minutes) {
+      return res.status(400).json({ message: 'Invalid data provided' });
+    }
+
+    const teams = await Team.find({ teamName: { $in: teamNames } });
+
+    if (!teams || teams.length === 0) {
+      return res.status(404).json({ message: 'Teams not found' });
+    }
+
+    const emails = teams.reduce((acc, team) => {
+      const teamEmails = team.players.map(player => player.email);
+      console.log(teamEmails)
+      return acc.concat(teamEmails);
+    }, []);
+
+    const alertTime = new Date(new Date(dateTime) - minutes * 60000);
+
+    cron.schedule(`${alertTime.getUTCMinutes()} ${alertTime.getUTCHours()} ${alertTime.getUTCDate()} ${alertTime.getUTCMonth() + 1} *`, () => {
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: emails,
+        subject: 'Match Alert',
+        text: `A match is scheduled between ${teamNames.join(' and ')}. Get ready!`,
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending email:', error);
+        } else {
+          console.log('Emails sent:', info.response);
+        }
+      });
+    });
+
+    res.status(200).json({ message: 'Alert set successfully!' });
+  } catch (error) {
+    console.error('Error setting alert:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+app.post('/register-scorer', async (req, res) => {
+  const { name, email } = req.body;
+  try {
+      const newScorer = new Scorer({ name, email });
+      await newScorer.save();
+      res.status(200).json({ message: 'Scorer registered successfully!' });
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to register scorer', error: error.message });
+  }
+});
+
+// Register Umpire
+app.post('/register-umpire', async (req, res) => {
+  const { name, email } = req.body;
+  try {
+      const newUmpire = new Umpire({ name, email });
+      await newUmpire.save();
+      res.status(200).json({ message: 'Umpire registered successfully!' });
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to register umpire', error: error.message });
+  }
+});
+
+// Register Venue
+app.post('/register-venue', async (req, res) => {
+  const { venueName } = req.body;
+  try {
+      const newVenue = new Venue({ venueName });
+      await newVenue.save();
+      res.status(200).json({ message: 'Venue registered successfully!' });
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to register venue', error: error.message });
+  }
+});
+
+const scorerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+});
+
+// Umpire Schema
+const umpireSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+});
+
+// Venue Schema
+const venueSchema = new mongoose.Schema({
+  venueName: { type: String, required: true, unique: true },
+  lastUsed: { type: Date },
+});
+const Scorer = mongoose.model('Scorer', scorerSchema);
+const Umpire = mongoose.model('Umpire', umpireSchema);
+const Venue = mongoose.model('Venue', venueSchema);
+
+
+
+
+
+
+const matchScheduleSchema = new mongoose.Schema({
+  team1: String,
+  team1Players: [String],
+  team2: String,
+  team2Players: [String],
+  scorerName: String,
+  umpireName: String,
+  venueName: String,
+  dateTime: Date,
+});
+const MatchSchedule = mongoose.model('MatchSchedule', matchScheduleSchema);
+const venueAvailability = {}; // Example for checking venue availability
+// API Endpoints
+app.get('/teams', async (req, res) => {
+  try {
+      const teams = await Team.find({});
+      res.status(200).json(teams);
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch teams', error: error.message });
+  }
+});
+
+app.get('/scorers', async (req, res) => {
+  try {
+      const scorers = await Scorer.find({});
+      res.status(200).json(scorers);
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch scorers', error: error.message });
+  }
+});
+
+app.get('/umpires', async (req, res) => {
+  try {
+      const umpires = await Umpire.find({});
+      res.status(200).json(umpires);
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch umpires', error: error.message });
+  }
+});
+
+app.get('/venues', async (req, res) => {
+  try {
+      const venues = await Venue.find({});
+      res.status(200).json(venues);
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch venues', error: error.message });
+  }
+});
+// API Endpoint to fetch all teams
+app.get('/teams', async (req, res) => {
+    try {
+        const teams = await Team.find({});
+        res.json(teams);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching teams', error: error.message });
+    }
+});
+
+// API Endpoint to fetch team details
+app.get('/teams/:teamName', async (req, res) => {
+    const { teamName } = req.params;
+    try {
+        const team = await Team.findOne({ teamName });
+        if (!team) {
+            return res.status(404).json({ message: 'Team not found' });
+        }
+        res.json(team);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching team details', error: error.message });
+    }
+});
+
+// Dummy function to check venue availability
+const checkVenueAvailability = (venueName) => {
+    const lastBooked = venueAvailability[venueName];
+    if (!lastBooked) return true;
+    const now = new Date();
+    return now > new Date(lastBooked.getTime() + 3 * 60 * 60 * 1000); // 3 hours
+};
+
+// API Endpoint to save match schedule and send email
+app.post('/schedule-match', async (req, res) => {
+  const { team1, team1Players, team2, team2Players, scorerName, umpireName, venueName, dateTime } = req.body;
+
+  try {
+      // Check if the venue is available
+      if (!checkVenueAvailability(venueName)) {
+          return res.status(400).json({ message: 'Venue is unavailable for the next 3 hours' });
+      }
+
+      // Check if the venue exists
+      const venue = await Venue.findOne({ venueName });
+      if (!venue) {
+          return res.status(404).json({ message: 'Venue not found' });
+      }
+
+      // Check if teams exist
+      const teams = await Team.find({ teamName: { $in: [team1, team2] } });
+      if (teams.length !== 2) {
+          return res.status(404).json({ message: 'One or more teams not found' });
+      }
+
+      // Get scorer and umpire
+      const scorer = await Scorer.findOne({ name: scorerName });
+      const umpire = await Umpire.findOne({ name: umpireName });
+      if (!scorer || !umpire) {
+          return res.status(404).json({ message: 'Scorer or umpire not found' });
+      }
+
+      // Prepare email data
+      const playerEmails = [
+          ...team1Players.map(player => `${player}@example.com`), // Assuming you have a method to get player emails
+          ...team2Players.map(player => `${player}@example.com`), // Add emails of team2 players
+          scorer.email,
+          umpire.email
+      ];
+      const mailOptions = {
+          from: 'your-email@gmail.com',
+          to: playerEmails,
+          subject: 'Match Scheduled',
+          text: `A match has been scheduled on ${dateTime} at ${venueName}. \n\nTeam 1: ${team1}\nPlayers: ${team1Players.join(', ')}\n\nTeam 2: ${team2}\nPlayers: ${team2Players.join(', ')}\n\nScorer: ${scorerName}\nUmpire: ${umpireName}\nVenue: ${venueName}\nDate and Time: ${dateTime}`
+      };
+
+      // Send email
+      try {
+          await transporter.sendMail(mailOptions);
+      } catch (emailError) {
+          console.error('Error sending email:', emailError);
+          return res.status(500).json({ message: 'Failed to send email', error: emailError.message });
+      }
+
+      // Save match schedule
+      const matchSchedule = new MatchSchedule({
+          team1,
+          team1Players,
+          team2,
+          team2Players,
+          scorerName,
+          umpireName,
+          venueName,
+          dateTime
+      });
+      await matchSchedule.save();
+
+      // Update venue availability
+      venueAvailability[venueName] = new Date();
+
+      res.status(200).json({ message: 'Match scheduled and email sent!' });
+  } catch (error) {
+      res.status(500).json({ message: 'Failed to schedule match', error: error.message });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

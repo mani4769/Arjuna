@@ -1,4 +1,4 @@
-// AdminFeedbackPage.js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './adminfeedback.css'; 
@@ -21,7 +21,7 @@ const AdminFeedbackPage = () => {
 
     return (
         <div className="admin-feedback-page">
-            <h1>Admin Feedback Dashboard</h1>
+            <h1 style={{textAlign:'center',color:'#333',color:'blue',fontSize:'5vh'}}>Admin Feedback Dashboard</h1>
             <div className="feedback-list">
                 {feedbacks.length === 0 ? (
                     <p>No feedbacks available.</p>

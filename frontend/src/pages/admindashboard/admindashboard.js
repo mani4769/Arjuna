@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './admindashboard.css';
-import admin from '../../images/profile00.jpg';
+import admindas from '../../images/admindas.png';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import {
@@ -59,7 +59,7 @@ const Dashboard = () => {
       {
         label: 'Number of Users',
         data: [userLen, 0, 0],
-        backgroundColor: 'yellow',
+        backgroundColor: '#9a159a',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
     
@@ -67,7 +67,7 @@ const Dashboard = () => {
       {
         label: 'Number of Teams',
         data: [0, teamLen, 0],
-        backgroundColor: 'pink',
+        backgroundColor: '#39d3eb',
         borderColor: 'rgba(153, 102, 255, 1)',
         borderWidth: 1,
       },
@@ -98,9 +98,9 @@ const Dashboard = () => {
         ticks: {
           font: {
             size: 24,
-            float:'left' // Adjust the font size if needed
+            float:'left'
           },
-          padding: 20, // Increase padding to create more space for labels
+          padding: 20, 
         },
       },
     },
@@ -125,15 +125,12 @@ const Dashboard = () => {
     <div className="acontainer">
       <aside className="asidebar">
         <div className="alogo">
-          <img src={admin} alt="Admin Logo" />
+          <img src={admindas} alt="Admin Logo" />
         </div>
         <nav className="anav">
           <a href="/admindashboard" style={{ textDecoration: 'none' }}><button type="button" id="homebtn">Home</button></a>
           <a href="/registration" style={{ textDecoration: 'none' }}><button type="button" id="registerbtn">Register</button></a>
-          <a href="/schedule" style={{ textDecoration: 'none' }}><button type="button" id="schedulesbtn">Schedules</button></a>
-          <a href="/livescore" style={{ textDecoration: 'none' }}><button type="button" id="livescorebtn">Live Score</button></a>
-          <a href="/adminfeedback" style={{ textDecoration: 'none' }}><button type="button" id="livescorebtn">Feedback</button></a>
-          <a href="/passwordpage" style={{ textDecoration: 'none' }}><button type="button" id="livescorebtn">Make Admin</button></a>
+         <a href="/passwordpage" style={{ textDecoration: 'none' }}><button type="button" id="livescorebtn">Admin Acess</button></a>
         </nav>
       </aside>
       <main className="amain-content">

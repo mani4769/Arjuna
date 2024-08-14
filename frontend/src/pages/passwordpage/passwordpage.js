@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom'; 
 import './passwordpage.css';
 
 const VerifyPasswordPage = () => {
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,7 +14,7 @@ const VerifyPasswordPage = () => {
       const response = await axios.post('http://localhost:5000/verifypassword', { password });
 
       if (response.data.message === 'Password correct, proceed to the next page') {
-        navigate('/makeadmin'); 
+        navigate('/superadmin'); 
       } else {
         alert('Invalid password');
       }

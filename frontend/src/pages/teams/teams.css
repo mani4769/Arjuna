@@ -1,36 +1,20 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
 
-header {
-    background: linear-gradient(90deg, #FF5733, #FFC300);
-    color: #fff;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: headerAnimation 1.5s ease-out;
-}
 
-@keyframes headerAnimation {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+header
+{
+   background-color: white;
+   background: linear-gradient(135deg, #9a159a, #39d3eb);
 }
-
 main {
     display: flex;
     justify-content: center;
     padding: 2rem;
+    width: 100%;
     animation: mainAnimation 1.5s ease-out;
-}
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-top: 20px;
+/* }
 
 @keyframes mainAnimation {
     from {
@@ -41,67 +25,159 @@ main {
         opacity: 1;
         transform: translateY(0);
     }
-}
+} */
+
 
 #team-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
 }
 
 .team-row {
     display: flex;
     justify-content: space-between;
-    gap: 15rem;
-   margin-right: 20vh;
-  
+    gap: 2rem;
 }
 
 .team-card {
     flex: 1;
-    padding: 1rem;
-    border-radius: 10px;
-    color: rgb(239, 150, 7);
+    padding: 2rem;
+    border-radius: 15px;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.4s, box-shadow 0.4s;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 6vh;
-    margin-top: 3vh;
-    background-color: gray;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #5680e9, #8760d0);
+    background-size: 200% 200%;
+    animation: gradientShift 5s ease infinite;
+    margin-top: 1vh;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .team-card h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    background-image: linear-gradient(135deg, #5ab9ea 0%, #84ceeb 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .team-card:hover {
-    opacity: 6.4;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
+
 
 #team-details {
     margin-left: 2rem;
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.8);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     max-width: 600px;
     width: 100%;
+    animation: detailsAnimation 0.8s ease-out;
+    backdrop-filter: blur(10px);
+}
+/* 
+@keyframes detailsAnimation {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    } */
 }
 
 #details {
     margin-top: 1rem;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    color: #333;
 }
+
 
 .players-list {
     margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
 }
+
+.players-list button {
+    background: linear-gradient(90deg, #5680e9, #8760d0);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0.5rem; 
+}
+
+.players-list button:hover {
+    background: linear-gradient(90deg, #8760d0, #5680e9);
+    transform: scale(1.05);
+}
+
+
+input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #5680e9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(86, 128, 233, 0.5);
+}
+
 
 .player-details {
     margin-top: 1rem;
     padding: 1rem;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    animation: playerAnimation 0.8s ease-out;
+    backdrop-filter: blur(5px);
 }
+/* 
+@keyframes playerAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+} */
+

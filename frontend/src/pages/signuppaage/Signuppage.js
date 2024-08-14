@@ -90,7 +90,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
           Your browser does not support the video tag.
         </video>
       </div>
-      <Popup showPopup={showPopup} closePopup={() => setShowPopup(false)} /> {/* Render Popup */}
+      <Popup showPopup={showPopup} closePopup={() => setShowPopup(false)} />
     </div>
   );
 }
