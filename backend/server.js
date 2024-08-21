@@ -42,7 +42,7 @@ const teamSchema = new mongoose.Schema({
   players: [playerSchema]
 });
 
-
+//mani
 
 const Team = mongoose.model('Team', teamSchema);
 
