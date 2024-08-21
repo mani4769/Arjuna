@@ -14,6 +14,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
+app.get("/",(req, res) =>
+{
+ res.send("welcome to the API");
+});
 
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
