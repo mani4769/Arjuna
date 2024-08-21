@@ -7,13 +7,24 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const cron = require('node-cron');
 
+
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const corsConfig = {
+  origin : "*",
+  Credential: true,
+  methods: ["GET", "POST", "PUT" , "DELETE"],
+};
+app.options("",cors(corscConfig));
+app.use(cors(corsConfig));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
+app.get("/",(req, res) =>
+{
+ res.send("welcome to the API");
+});
 
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -42,7 +53,7 @@ const teamSchema = new mongoose.Schema({
   players: [playerSchema]
 });
 
-
+//mani
 
 const Team = mongoose.model('Team', teamSchema);
 
