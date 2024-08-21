@@ -22,7 +22,7 @@ import image from '../../images/image.png';
 const Homepage = () => {
     const [userPopupVisible, setUserPopupVisible] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
-
+//mani
     useEffect(() => {
         const carouselContainer = document.querySelector('.carousel-container');
         const items = Array.from(document.querySelectorAll('.carousel-item'));

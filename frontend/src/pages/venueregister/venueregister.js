@@ -18,7 +18,7 @@ const RegisterVenue = () => {
             setMessage(data.message);
         } catch (error) {
             setMessage('Error registering venue');
-        }//x
+        }//mani
     };
 
     return (
