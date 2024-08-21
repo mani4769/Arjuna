@@ -95,37 +95,20 @@ const Homepage = () => {
 
           
                 
-            <div className="popup" id="popup">
-                <div className="image-container">
-                    <img src={second} alt="Image 1" />
-                    <img src={third} alt="Image 2" />
-                    <img src={first} alt="Image 3" />
-                    <img src={second} alt="Image 1" />
-                    <img src={third} alt="Image 2" />
-                    
-                    
-                </div>
-                <hr />
-                <center onClick={closePopup} style={{ cursor: 'pointer' }}>
-                    <svg className="arrows">
-                        <path className="a1" d="M0 0 L30 32 L60 0"></path>
-                        <path className="a2" d="M0 20 L30 52 L60 20"></path>
-                        <path className="a3" d="M0 40 L30 72 L60 40"></path>
-                    </svg>
-                </center>
-            </div>
+         
            
             <aside className="sidebar" >
                 <div className="logo">
                     <img src={srkrlogo} style={{height:'13vh',width:'13vh',marginLeft:'8vh'}} alt="IPL Logo" />
                 </div>
-                <div className='butt' style={{marginTop:'5vh'}}>
-               <a href='/homepage'><button>Home</button></a>
+                <div className='butt' style={{marginTop:'-2vh'}}>
+               <a href='/'><button>Home</button></a>
                <a href='/teams'> <button>Teams</button></a>
                <a href='#'><button>LiveScore</button></a>
                <a href='/alert'><button>Notifications</button></a>
                <a href='/userschedule'><button>Schedules</button></a>
                <a href='/feedback'><button>feedback</button></a>
+               <a href='/admin'><button>adminlogin</button></a>
                </div>
             </aside>
         
@@ -136,8 +119,7 @@ const Homepage = () => {
     
              </div>
                 <div onClick={handleProfileClick} style={{marginTop:'20vh',marginRight:'15vh'}}>
-                <img src={userlogo}style={{marginLeft:'170vh', marginTop:'43vh',height:'90px'}} alt="User Profile" />
-
+     
                     </div>
                  <div  className='mytext'>
                     <h2 >Match Summary</h2>

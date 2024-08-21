@@ -16,7 +16,7 @@ import Userfeedback from './pages/userfeedback/userfeedback.js';
 import AdminFeedback from './pages/feedback/adminfeedback.js';
 import Makeadmin   from './pages/makeadmin/makeadmin.js';
 import Passwordpage from './pages/passwordpage/passwordpage.js';
-import UserChart from './pages/Chart/Chart.js';
+import UserChart from './pages/Chart/chart.js';
 import Sdashboard from './pages/superadmin/superadmin.js'
 import MatchAlert from './pages/matchalert/matchalert.js'
 import RegisterUmpire from './pages/umpireregister/Umpirerregister.js';
@@ -37,12 +37,12 @@ function MainApp() {
     // <Router>
       <Routes>
         <Route
-          path="/"
+          path="/signupapge"
           element={<SignupPage setIsLoggedIn={setIsLoggedIn} setShowPopup={setShowPopup} />}
         />
         (
           <Route
-            path="/homepage"
+            path="/"
             element={<HomePage/>}
           />
 
