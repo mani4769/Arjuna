@@ -1,0 +1,90 @@
+
+/* userSchedule.css */
+.user-schedule-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff; 
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-schedule-container:hover {
+  background-color: #f0f4f8; 
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.user-schedule-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50; 
+  font-family: 'Arial', sans-serif;
+  position: relative; 
+  padding-bottom: 10px; 
+}
+
+.user-schedule-container h1::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 4px;
+  background-color: #3498db; 
+  border-radius: 2px;
+  transition: width 0.3s ease; 
+}
+
+.user-schedule-container h1:hover::before {
+  width: 100%; 
+}
+
+.user-schedule-container h1:hover {
+  color: #3498db;
+  text-shadow: 0 4px 6px rgba(52, 152, 219, 0.2); 
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.schedule-table thead tr {
+  background-color: #3498db;
+  color: white;
+}
+
+.schedule-table th, .schedule-table td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.schedule-table th {
+  background-color: #2980b9; 
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: #e1e9f0; 
+  cursor: pointer;
+  transform: scale(1.02); 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.schedule-table tbody td {
+  color: #333; 
+}
+
+.schedule-table tbody td:hover {
+  color: #3498db; 
+}

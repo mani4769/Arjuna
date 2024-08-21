@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Live</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking to external CSS file -->
+</head>
+<style>
+    /* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font-family: Arial, sans-serif; */
+    /* font-family: Gruppo;font-size: 22px;  */
+    font-family: Aclonica;font-size: 20px;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background:#8458B3;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10); 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Main section styles */
+main {
+    padding: 20px;
+}
+
+/* Match schedules table styles */
+h2 {
+    color: black;
+    margin-bottom: 15px;
+}
+
+table {
+    width: auto;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    
+}
+table th, table td {
+    /* border: 3px solid #ddd; */
+    padding: 20px;
+    text-align: left;
+}
+
+table th {
+    background-color:  #d05699;
+    color: white;border-radius: 9px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10); 
+    
+}
+
+table tr:nth-child(even) {
+    background-color:white;
+}
+
+table tr:hover {
+    background-color: #e7f3ff; 
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 10);
+}
+
+/* Alert symbols */
+.alert-icon {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* On top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: rgb(237, 195, 230);
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 5px;
+    border: 1px solid #88888800;
+    width: 40%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 10); 
+}
+.vs {
+    font-size: large;
+    font-weight:600;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 5 20px;
+    animation: zoomIn 2s infinite alternate;
+    display: inline-block;
+    
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.4);
+        color: black;
+    }
+    to {
+        transform: scale(1.1);
+        color: rgba(238, 50, 50, 0.788);
+    }
+}
+
+
+.close-button {
+    color: #8458B3;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #8458B3;
+    color: white;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10); 
+}
+</style>
+<body>
+    <header>
+             <!-- <img src="clg logo.png" style="height: 90px;">  -->
+             <h1> Live Notifications</h1>
+        <nav>
+            <!-- <ul>
+                <li><a href="#schedules">Match Schedules</a></li>
+                <li><a href="#set-alert">Set Match Alert</a></li>
+                <li><a href="#notifications">Notifications</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul> -->
+        </nav>
+    </header> 
+
+    <main>
+        <section id="schedules">
+            <h2>Match Schedules</h2>
+          <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Match</th>
+                        <th>Venue</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-08-13</td>
+                        <td>
+                            <img src="image.png" alt="Team PAK Logo" width="90" height="60">
+                            <span class="vs">VS</span>
+                            <img src="vishnulogo.jpg" alt="Team SRKR Logo" width="90" height="60">
+                            <span class="alert-icon" data-match="2023-11-01 10:00">🔔</span>
+                        </td>
+                        <td> SRKR ARJUNA STADIUM </td>
+                        <td>10:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-14</td>
+                        <td>
+                            <img src="image.png" alt="Team NZ Logo" width="90" height="60"> 
+                           <span class="vs">VS</span>
+                            <img src="vishnulogo.jpg" alt="Team SRKR Logo" width="90" height="60">
+                            <span class="alert-icon" data-match="2023-11-02 14:00">🔔</span>
+                        </td>
+                        <td>SRKR ARJUNA STADIUM</td>
+                        <td>02:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>2024-08-15</td>
+                        <td>
+                            <img src="image.png" alt="Team INDIA Logo" width="90" height="60">
+                            <span class="vs">VS</span>
+                            <img src="vishnulogo.jpg" alt="Team AUS Logo" width="90" height="60">
+                            <span class="alert-icon" data-match="2023-11-03 18:00">🔔</span>
+                        </td>
+                        <td>SRKR ARJUNA STADIUM</td>
+                        <td>06:00 PM</td>
+                    </tr>
+                </tbody>
+            </table></center>
+        </section>
+
+        <!-- Modal Structure -->
+        <div id="alertModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Set Match Alert</h2>
+                <label for="alertMinutes" style="text-decoration: solid;">Select alert time (minutes before match):</label>
+                <input type="number" id="alertMinutes" name="alertMinutes" min="1" required>
+                <button id="setAlertButton" style="color: red;">Set Alert</button>
+            </div>
+        </div>
+
+        <section id="notifications">
+            <h2>Notifications</h2>
+            <p>You will receive notifications for upcoming matches. Make sure your browser allows notifications!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; SRKR Cricket Live. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('alertModal');
+    const closeButton = document.querySelector('.close-button');
+
+    // Add event listeners for the alert icons
+    const alertIcons = document.querySelectorAll('.alert-icon');
+    alertIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            const matchDateTime = icon.getAttribute('data-match');
+            openModal(matchDateTime);
+        });
+    });
+
+    // Function to open the modal
+    function openModal(matchDateTime) {
+        modal.style.display = 'block';
+        document.getElementById('setAlertButton').setAttribute('data-match', matchDateTime);
+        document.getElementById('alertMinutes').value = ''; // Clear previous input
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Event listener for the close button
+    closeButton.addEventListener('click', closeModal);
+
+    // Event listener for clicks outside the modal
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Setting alert when the button is clicked within the modal
+    document.getElementById('setAlertButton').addEventListener('click', () => {
+        const alertMinutes = parseInt(document.getElementById('alertMinutes').value, 10);
+        const matchDateTime = document.getElementById('setAlertButton').getAttribute('data-match');
+
+        if (alertMinutes && matchDateTime) {
+            scheduleMatchAlert(matchDateTime, alertMinutes);
+            closeModal();
+        } else {
+            alert('Please enter a valid number of minutes.');
+        }
+    });
+});
+
+// Function to schedule alerts for matches
+function scheduleMatchAlert(matchDateTime, alertMinutes) {
+    const matchDate = new Date(matchDateTime);
+    const notificationTime = matchDate.getTime() - (alertMinutes * 60 * 1000); // Convert minutes to milliseconds
+
+    const currentTime = new Date().getTime();
+    if (notificationTime > currentTime) {
+        const timeDifference = notificationTime - currentTime; // Calculate time until notification
+
+        // Set a timeout for the notification alert
+        setTimeout(() => {
+            alert(`🟡 Notification: Your selected match is starting in ${alertMinutes} minutes!`);
+        }, timeDifference);
+        
+        // Confirmation message
+        document.getElementById('alertMessage').innerText = 'Alert set successfully!';
+    } else {
+        // Inform the user if they selected a past match
+        document.getElementById('alertMessage').innerText = 'Please select a future match.';
+    }
+}
+    </script> <!-- Linking to external JavaScript file -->
+</body>
+</html>

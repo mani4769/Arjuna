@@ -1,0 +1,439 @@
+
+/* Overall container for the entire page */
+.container {
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   background-color: white;
+   overflow-x: hidden;
+   position: relative;
+}
+.main-content {
+   flex: 1;
+   margin-left: 250px; 
+   padding: 20px;
+   transition: margin-left 0.3s ease, background-color 0.3s ease;
+}
+.sidebar
+{
+   background: linear-gradient(135deg, #9a159a, #39d3eb);
+}
+
+
+
+.sidebar:not(.show) ~ .main-content {
+   margin-left: 0;
+}
+
+.header {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   padding: 20px;
+   position: absolute;
+   top: 0;
+   right: 0;
+   z-index: 2;
+   width: calc(100% - 250px);
+   background-color: transparent;
+}
+
+.header:hover {
+   background-color: #a00808;
+}
+
+
+.match-details {
+   text-align: center;
+   margin-top: 20px;
+   margin-left: 2vh;
+}
+
+.match-details h3 {
+   font-size: 1.5rem;
+   color: #333;
+   transition: color 0.3s, text-decoration 0.3s;
+   text-decoration: none; 
+}
+
+.match-details h3:hover {
+   color: #b50909; 
+   text-decoration: underline; 
+}
+
+
+.today-match {
+   margin-top: 200px;
+}
+
+.today-match h2 {
+   margin-left: 350px;
+   font-size: 2rem;
+   color: #333;
+   position: relative;
+   overflow: hidden;
+}
+
+.today-match h2::after {
+   content: '';
+   display: block;
+   width: 100%;
+   height: 4px;
+   background: #b50909;
+   position: absolute;
+   bottom: -5px;
+   left: 0;
+   transform: scaleX(0);
+   transform-origin: bottom right;
+   transition: transform 0.3s ease;
+}
+
+.today-match h2:hover::after {
+   transform: scaleX(1);
+   transform-origin: bottom left;
+}
+
+
+.carousel {
+   position: relative;
+   margin-left: 230px; 
+   width: 100%;
+   max-width: 900px;
+   height: 50vh;
+   margin: 20px auto;
+   overflow: hidden;
+   border-radius: 10px;
+   padding-left: 20vh;
+   
+  
+}
+
+.carousel-wrapper {
+   overflow: hidden;
+   width: 100%;
+   height: 100%;
+   
+  
+
+}
+
+.carousel-container {
+   display: flex;
+   gap: 20px;
+   transition: transform 0.5s ease-in-out;
+   
+}
+
+.carousel-item {
+   flex: 0 0 auto;
+   width: 250px;
+   height: 100%;
+   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease, background-color 0.3s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   margin-left: 10vh;
+}
+
+.carousel-item img {
+   width: auto;
+   height: 90%;
+   max-height: 60vh;
+   object-fit: cover;
+   transition: transform 0.5s ease-in-out, filter 0.3s ease;
+   border-radius: 10px;
+}
+
+.carousel-item.middle {
+   transform: scale(1.5);
+   z-index: 2;
+}
+
+.carousel-item:hover {
+   transform: scale(1.4);
+   background-color: rgba(255, 255, 255, 0.3);
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+
+.highlights {
+   margin-top: 20px;
+   margin-left: 290px; 
+   padding: 0 20px; 
+}
+
+.highlight-cards {
+   display: flex;
+   gap: 20px; 
+}
+
+.highlight-card {
+   background-color: #333;
+   padding: 10px;
+   border-radius: 10px;
+   width: 30%; 
+   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.highlight-card:hover {
+   transform: translateY(-10px);
+   background-color: #444; 
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.highlight-card img {
+   width: 100%;
+   border-radius: 10px;
+   transition: transform 0.3s;
+}
+
+.highlight-card img:hover {
+   transform: scale(1.05);
+}
+.highlight-card p {
+   color: #fff;
+   margin-top: 10px;
+   transition: color 0.3s, text-decoration 0.3s;
+   text-decoration: none; 
+}
+
+.highlight-card p:hover {
+   color: aqua; 
+   text-decoration: underline; 
+}
+
+
+.popup {
+   display: none;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 700px;
+   padding: 20px;
+   border: 1px solid #000;
+   background-color: #0b1d2a;
+   z-index: 1000;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+body.blurred .container {
+   filter: blur(5px);
+   opacity: 0.7;
+}
+
+.popup.show {
+   display: block;
+   opacity: 1;
+   transform: scale(1);
+}
+
+
+.image-container {
+   display: flex;
+   overflow: hidden;
+   width: 100%;
+}
+
+.image-container img {
+   width: 300px;
+   height: auto;
+   animation: move 20s infinite linear;
+   border-radius: 10px;
+   transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+   transform: scale(1.05); 
+}
+
+
+@keyframes move {
+   0% { transform: translateX(0); }
+   100% { transform: translateX(-300%); }
+}
+
+.arrows {
+   width: 70px;
+   height: 50px;
+   position: absolute;
+   bottom: 20px;
+}
+
+.arrows path {
+   stroke: #2994D1;
+   fill: transparent;
+   stroke-width: 1px;
+   animation: arrow 2s infinite;
+}
+
+@keyframes arrow {
+   0% { opacity: 0; }
+   40% { opacity: 1; }
+   80% { opacity: 0; }
+   100% { opacity: 0; }
+}
+
+.arrows path.a1 {
+   animation-delay: -1s;
+}
+
+.arrows path.a2 {
+   animation-delay: -0.5s;
+}
+
+.arrows path.a3 { 
+   animation-delay: 0s;
+}
+
+/* User popup styling */
+.user-popup {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: 1000;
+}
+
+.user-popup-content {
+   background: white;
+   padding: 20px;
+   border-radius: 8px;
+   text-align: center;
+   width: 300px;
+   transition: background-color 0.3s ease;
+}
+
+.user-popup-content:hover {
+   background-color: #f0f0f0; /* Light grey on hover */
+}
+
+.user-popup-content h3 {
+   margin-bottom: 20px;
+   font-size: 1.5rem;
+   transition: color 0.3s ease;
+}
+
+.user-popup-content h3:hover {
+   color: #007bff; /* Change color on hover */
+}
+
+.user-popup-content p {
+   margin: 10px 0;
+}
+
+.user-popup-content button {
+   margin-top: 20px;
+   padding: 10px 20px;
+   border: none;
+   background: #007bff;
+   color: white;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: background-color 0.3s, transform 0.3s;
+}
+
+.user-popup-content button:hover {
+   background: #0056b3;
+   transform: translateY(-3px);
+}
+
+/* Adjust for responsiveness */
+@media (max-width: 768px) {
+  .highlights {
+      margin-left: 0; /* Remove margin-left on smaller screens */
+  }
+
+  .highlight-card {
+      width: 100%; /* Make highlight cards full-width on smaller screens */
+  }
+}
+.mytext h2 {
+   font-size: 2rem;
+   text-transform: uppercase;
+   position: relative;
+   display: inline-block;
+   padding-bottom: 10px;
+   color: black; /* Set a default color */
+   transition: color 0.3s, text-shadow 0.3s;
+}
+
+.mytext h2::after {
+   content: "";
+   position: absolute;
+   left: 50%;
+   bottom: 0;
+   width: 100%;
+   height: 4px;
+   background: #28a745;
+   transform: translateX(-50%);
+   transition: width 0.3s ease;
+}
+
+.mytext h2:hover::after {
+   width: 50%;
+}
+
+.mytext h2:hover {
+   color: #28a745;
+   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* Sidebar styling */
+.sidebar {
+   width: 250px;
+   background-color: #ede8f5;
+
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+   padding: 20px;
+   z-index: 1;
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 100%;
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+   
+}
+
+.sidebar:hover {
+   background-color: #1c1c1c; /* Slightly lighter on hover */
+   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+}
+
+/* Logo styling */
+.logo img {
+   width: 100%;
+   border-radius: 8px;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo img:hover {
+   transform: scale(1.05); /* Enlarge on hover */
+   /* Shadow effect on hover */
+}
+
+.butt{
+   margin-left: 35px;
+   display: flex;
+   flex-direction: column;
+   width: 130px;
+}
+.butt button{
+   margin: 35px;
+   width: 100%;
+   background-color: #7f4caf;
+  border-radius: 50px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+}
+.butt button :hover{
+   background-color: #000;
+
+}

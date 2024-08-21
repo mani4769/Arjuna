@@ -1,0 +1,57 @@
+/* adminfeedbackpage.css */
+
+.admin-feedback-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef); 
+    text-align: center; 
+}
+
+
+
+
+.feedback-list {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: left; 
+}
+
+.feedback-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feedback-item {
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+    padding: 20px; 
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.feedback-item:hover {
+    transform: translateY(-5px);
+    background-color: #f1f9ff; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+.feedback-item p {
+    margin: 0 0 15px 0; 
+    line-height: 1.6;
+}
+
+.feedback-item p strong {
+    color: #333;
+    text-decoration: underline;
+    transition: color 0.3s ease, text-decoration 0.3s ease, font-weight 0.3s ease;
+    font-weight: 600; 
+}
+
+.feedback-item p strong:hover {
+    color: #007BFF; 
+    text-decoration: none; 
+    font-weight: 700; 
+}

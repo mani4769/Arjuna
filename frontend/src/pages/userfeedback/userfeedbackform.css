@@ -1,0 +1,161 @@
+
+.Afeedback-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ede8f5;
+    cursor: pointer;
+    /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)); */
+    background-size: 100% 200px;
+    background-position: 0% 100%;
+    transition: background-position 0.5s ease-out;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Afeedback-form:hover {
+    background-position: 100% 100%;
+  }
+  
+  .Afeedback-form h1 {
+    text-align: center;
+    color: #4a4a4a;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .Afeedback-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Afeedback-form label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+    display: block;
+  }
+  
+  .Afeedback-form select,
+  .Afeedback-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Afeedback-form select:focus,
+  .Afeedback-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .Afeedback-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .Afeedback-form button {
+    padding: 14px 30px;
+    border: none;
+    /* border-radius: 6px;
+    background: #007bff; */
+    background-color: #7f4caf;
+    border-radius: 50px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    font-weight: bold;
+    /* box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); */
+    animation: pulse 2s infinite;
+  }
+  
+  .Afeedback-form button:hover {
+    /* background: #0056b3; */
+    background-color: #7f4caf;
+    border-radius: 50px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 10);
+    transform: translateY(-2px);
+    /* box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3); */
+  }
+  
+  .Afeedback-form button:active {
+    /* background: #004494; */
+    background-color: #7f4caf;
+    border-radius: 50px;
+    transform: translateY(0);
+  }
+  
+  .Afeedback-form .Afeedback-item {
+    margin-bottom: 25px;
+  }
+  
+  .Afeedback-form .Afeedback-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .Afeedback-form .Afeedback-item .rating-stars {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .Afeedback-form .Afeedback-item .rating-stars .star {
+    font-size: 48px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    animation: twinkle 3s infinite;
+  }
+  
+  .Afeedback-form .Afeedback-item .rating-stars .star.filled {
+    color: #ffd700;
+  }
+  
+  .Afeedback-form .Afeedback-item .rating-stars .star:hover,
+  .Afeedback-form .Afeedback-item .rating-stars .star.filled:hover {
+    color: #ffda44;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes twinkle {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }

@@ -1,0 +1,87 @@
+/* MatchStyles.css */
+
+.matches-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #f0f4f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.match-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.match-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.match-card h2 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 24px;
+    border-bottom: 2px solid #ff4500;
+    padding-bottom: 5px;
+}
+
+.match-card p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.players {
+    margin-top: 15px;
+}
+
+.players h3 {
+    margin: 10px 0 10px;
+    font-size: 18px;
+    color: #ff4500;
+}
+
+.players ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.players li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #e7f3ff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.players li:hover {
+    background-color: #cfe7ff;
+}
+
+@media (max-width: 768px) {
+    .match-card h2 {
+        font-size: 20px;
+    }
+
+    .match-card p, .players h3, .players li {
+        font-size: 14px;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #ff4500;
+    margin-bottom: 30px;
+    font-size: 32px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
