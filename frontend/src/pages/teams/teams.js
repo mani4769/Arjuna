@@ -12,7 +12,7 @@ const Teams = () => {
     useEffect(() => {
         const fetchTeams = async () => {
             try {
-                const response = await axios.get('https://arjuna-six.vercel.app/api/teams');
+                const response = await axios.get('http://arjuna-six.vercel.app/api/teams');
                 console.log('Fetched teams:', response.data);
                 setTeams(response.data);
             } catch (error) {
