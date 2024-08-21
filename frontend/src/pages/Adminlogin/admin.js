@@ -32,7 +32,7 @@ const Admin = ({ setIsLoggedIn }) => {
 
   const handleOtpSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/verifyotp', {
+      const response = await axios.post('https://arjuna-six.vercel.app/verifyotp', {
         email: formData.email,
         otp: otp,
       });

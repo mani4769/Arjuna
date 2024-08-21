@@ -10,7 +10,7 @@ const TodaysMatches = () => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const response = await fetch('http://localhost:5000/todays-matches');
+                const response = await fetch('https://arjuna-six.vercel.app/todays-matches');
                 if (!response.ok) throw new Error('Failed to fetch matches');
                 const data = await response.json();
                 setMatches(data);

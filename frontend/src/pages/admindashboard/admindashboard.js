@@ -23,7 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/users');
+        const response = await axios.get('https://arjuna-six.vercel.app/api/users');
         setUserLen(response.data.length);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -32,7 +32,7 @@ const Dashboard = () => {
 
     const fetchTeamData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/teams');
+        const response = await axios.get('https://arjuna-six.vercel.app/api/teams');
         setTeamLen(response.data.length);
       } catch (error) {
         console.error('Error fetching team data:', error);
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
     const fetchScheduleData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/schedules');
+        const response = await axios.get('https://arjuna-six.vercel.app/api/schedules');
         setScheduleLen(response.data.length);
       } catch (error) {
         console.error('Error fetching schedule data:', error);

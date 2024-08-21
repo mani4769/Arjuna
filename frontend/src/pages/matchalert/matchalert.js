@@ -9,7 +9,7 @@ const MatchAlert = () => {
 
     const handleSetAlert = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/set-alert', {
+            const response = await fetch('https://arjuna-six.vercel.app/api/set-alert', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

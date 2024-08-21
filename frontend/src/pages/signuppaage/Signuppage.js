@@ -23,7 +23,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/signup', formData);
+      const response = await axios.post('https://arjuna-six.vercel.app/signup', formData);
       alert(response.data.message); 
       setFormData({ name: '', regNo: '', email: '' });
     } catch (error) {
@@ -34,7 +34,7 @@ const SignupPage = ({ setIsLoggedIn }) => {
   const handleLoginClick = async () => {
     console.log('Login button clicked');
     try {
-      const response = await axios.post('http://localhost:5000/login', { regNo: formData.regNo });
+      const response = await axios.post('https://arjuna-six.vercel.app/login', { regNo: formData.regNo });
       alert(response.data.message); 
       setIsVideoOverlayActive(true);
   

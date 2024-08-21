@@ -11,7 +11,7 @@ const VerifyPasswordPage = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/verifypassword', { password });
+      const response = await axios.post('https://arjuna-six.vercel.app/verifypassword', { password });
 
       if (response.data.message === 'Password correct, proceed to the next page') {
         navigate('/superadmin'); 

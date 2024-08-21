@@ -7,7 +7,7 @@ function ScheduleAlert() {
     const [schedules, setSchedules] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/schedule')
+        axios.get('https://arjuna-six.vercel.app/api/schedule')
             .then(response => {
                 console.log('Schedules fetched:', response.data);
                 setSchedules(response.data);
@@ -35,7 +35,7 @@ function ScheduleAlert() {
         const email = userDetails.email;
 
         if (alertTime > new Date()) {
-            axios.post('http://localhost:5000/api/alert', {
+            axios.post('https://arjuna-six.vercel.app/api/alert', {
                 email: email,
                 team1: schedule.team1,
                 team2: schedule.team2,

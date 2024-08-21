@@ -7,7 +7,7 @@ const UserSchedulePage = () => {
 
   useEffect(() => {
   
-    axios.get('http://localhost:5000/api/schedule')
+    axios.get('https://arjuna-six.vercel.app/api/schedule')
       .then(response => {
         setSchedules(response.data);
       })

@@ -7,7 +7,7 @@ const RecentMatches = () => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const response = await fetch('http://localhost:5000/matches/today');
+                const response = await fetch('https://arjuna-six.vercel.app/matches/today');
                 if (!response.ok) throw new Error('Failed to fetch today\'s matches');
                 const data = await response.json();
                 setMatches(data);

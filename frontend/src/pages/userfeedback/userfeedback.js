@@ -17,7 +17,7 @@ const FeedbackForm = () => {
         };
 
         try {
-            await axios.post('http://localhost:5000/feedback', feedbackData);
+            await axios.post('https://arjuna-six.vercel.app/feedback', feedbackData);
             alert('Feedback submitted successfully!');
             setRole('');
             setRating(null);

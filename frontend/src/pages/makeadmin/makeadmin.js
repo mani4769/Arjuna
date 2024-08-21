@@ -19,7 +19,7 @@ const AddAdminForm = () => {
         };
 
         try {
-            await axios.post('http://localhost:5000/admin', adminData);
+            await axios.post('https://arjuna-six.vercel.app/admin', adminData);
             alert('Admin added successfully!');
             setName('');
             setEmail('');
@@ -34,7 +34,7 @@ const AddAdminForm = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:5000/admin/update-password`, {
+            const response = await axios.put(`https://arjuna-six.vercel.app/admin/update-password`, {
                 email: updateEmail,
                 newPassword,
             });

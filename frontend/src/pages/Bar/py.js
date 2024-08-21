@@ -6,7 +6,7 @@ const Marts = () => {
   const [pieData, setPieData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/statistics')
+    axios.get('https://arjuna-six.vercel.app/api/statistics')
       .then(response => {
         const data = response.data;
         if (data && data.barGraph && data.pieChart) {

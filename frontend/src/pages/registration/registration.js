@@ -25,10 +25,10 @@ function Registration() {
         try {
             let response;
             if (action === 'Register') {
-                response = await axios.post('http://localhost:5000/registerTeam', formData);
+                response = await axios.post('https://arjuna-six.vercel.app/registerTeam', formData);
                 alert(response.data.message);
             } else if (action === 'Update') {
-                response = await axios.put(`http://localhost:5000/updateTeam/${formData.email}`, formData);
+                response = await axios.put(`https://arjuna-six.vercel.app/updateTeam/${formData.email}`, formData);
                 alert(response.data.message);
             }
             resetForm();
@@ -43,7 +43,7 @@ function Registration() {
         if (confirmation) {
             try {
                 const email = document.getElementById('email').value;
-                const response = await axios.delete(`http://localhost:5000/deleteTeam/${email}`);
+                const response = await axios.delete(`https://arjuna-six.vercel.app/deleteTeam/${email}`);
                 alert(response.data.message);
                 resetForm();
             } catch (error) {

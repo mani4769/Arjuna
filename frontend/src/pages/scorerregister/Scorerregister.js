@@ -9,7 +9,7 @@ const RegisterScorer = () => {
         e.preventDefault();
         console.log('Registering scorer with:', { name, email });
         try {
-            const response = await fetch('http://localhost:5000/api/register-scorer', {
+            const response = await fetch('https://arjuna-six.vercel.app/api/register-scorer', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

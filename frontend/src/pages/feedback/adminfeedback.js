@@ -9,7 +9,7 @@ const AdminFeedbackPage = () => {
     useEffect(() => {
         const fetchFeedbacks = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/feedback');
+                const response = await axios.get('https://arjuna-six.vercel.app/feedback');
                 setFeedbacks(response.data);
             } catch (error) {
                 console.error('Error fetching feedbacks:', error);

@@ -7,7 +7,7 @@ const RegisterVenue = () => {
     const handleRegisterVenue = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/register-venue', {
+            const response = await fetch('https://arjuna-six.vercel.app/api/register-venue', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

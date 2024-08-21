@@ -14,7 +14,7 @@ const SchedulePage = () => {
 
   useEffect(() => {
    
-    axios.get('http://localhost:5000/api/teams')
+    axios.get('https://arjuna-six.vercel.app/api/teams')
       .then(response => {
         setTeams(response.data);
       })
@@ -39,7 +39,7 @@ const SchedulePage = () => {
 
     console.log(scheduleData);
 
-    axios.post('http://localhost:5000/api/schedule', scheduleData)
+    axios.post('https://arjuna-six.vercel.app/api/schedule', scheduleData)
       .then(response => {
         alert(response.data.message);
         setScheduleData({

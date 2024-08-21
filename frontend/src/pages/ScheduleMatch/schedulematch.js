@@ -95,7 +95,7 @@ const ScheduleMatch = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/schedule-match', {
+            const response = await fetch('https://arjuna-six.vercel.app/schedule-match', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

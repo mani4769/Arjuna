@@ -8,7 +8,7 @@ const RegisterUmpire = () => {
     const handleRegisterUmpire = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/register-umpire', {
+            const response = await fetch('https://arjuna-six.vercel.app/api/register-umpire', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
