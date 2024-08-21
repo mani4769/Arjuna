@@ -375,7 +375,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const cron = require('node-cron');
 
 const app = express();
