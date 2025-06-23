@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './livescoreapp.css';
 
 const LiveCricketScore = () => {
@@ -30,7 +30,7 @@ const LiveCricketScore = () => {
 
     const [batsmenStats, setBatsmenStats] = useState({});
     const [bowlersStats, setBowlersStats] = useState({});
-    const [outPlayers, setOutPlayers] = useState([]);
+    // const [outPlayers, setOutPlayers] = useState([]);
     const [currentScore, setCurrentScore] = useState(0);
     const [totalBalls, setTotalBalls] = useState(0);
     const [totalWickets, setTotalWickets] = useState(0);

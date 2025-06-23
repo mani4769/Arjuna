@@ -134,25 +134,24 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
-  const { regNo } = req.body;
+app.post('/adminlogin', async (req, res) => {
+  console.log(req.body);
+  const { user } = req.body;
+  
   try {
-    const user = await User.findOne({ regNo });
-    if (!user) {
-      return res.status(400).send({ message: 'No user exists' });
-    }
-
+    
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: user.email,
       subject: 'SRKR CRICKET MANAGEMENT',
-      text: `A login attempt for the team Arjunas website with your registration number: ${regNo} is successful. If this wasn't you, please ignore this email.`
+      text: `A login attempt for the team Arjunas website with your Name: ${user.name} is successful. If this wasn't you, please ignore this email.`
     };
 
     await transporter.sendMail(mailOptions);
     res.send({ message: 'Login successful, email sent' });
   } catch (error) {
-    res.status(500).send({ message: 'Server error' });
+    console.error('Mail error:', error); // Add this line
+    res.status(500).send({ message: 'Server error', error: error.message }); // Add error message for debugging
   }
 });
 

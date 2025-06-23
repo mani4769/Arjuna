@@ -1,14 +1,13 @@
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Homepage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import srkrlogo from  '../../images/srkrlogo.png';
-import first from '../../images/first.png';
-import second from '../../images/second.png';
-import third from '../../images/third.png';
-import ipllogo from '../../images/ipllogo.jpg';
-import userlogo from '../../images/userlogo.png';
+// import first from '../../images/first.png';
+// import second from '../../images/second.png';
+// import third from '../../images/third.png';
+// import ipllogo from '../../images/ipllogo.jpg';
+// import userlogo from '../../images/userlogo.png';
 import high from '../../images/highligths.png';
 import fix from '../../images/fix1.png';
 import live from '../../images/live.png';
@@ -17,7 +16,7 @@ import srkrpos from '../../images/SRKRpos.png';
 import bat from '../../images/BAT.png';
 import bow from '../../images/BOW.png';
 import mostruns from '../../images/mostruns.png';
-import image from '../../images/image.png';
+// import image from '../../images/image.png';
 
 const Homepage = () => {
     const [userPopupVisible, setUserPopupVisible] = useState(false);
@@ -128,7 +127,7 @@ const Homepage = () => {
                         <div className="carousel-wrapper" style={{height:'100vh',}}>
                             <div className="carousel-container" style={{marginTop:'9vh'}}>
                                 <div className="carousel-item">
-                                    <img src={bat} style={{width:'34vh',height:'45vh'}} alt="Match Image 1" />
+                                    <img src={bat} style={{width:'34vh',height:'45vh'}} alt="Batsman in action" />
                                 </div>
                                 <div className="carousel-item">
                                     <img src={bow} style={{width:'34vh',height:'45vh'}}alt="Match Image 2" />
